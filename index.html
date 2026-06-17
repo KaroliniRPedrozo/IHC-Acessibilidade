@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="page.title">AgendaSaúde — Agendamento de Consulta</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Skip Navigation Link -->
+  <a href="#main-content" class="skip-link" data-i18n="skip.link">Ir para o conteúdo principal</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand">
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#1A6B3C"/>
+          <path d="M16 7v18M7 16h18" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-name" data-i18n="brand.name">AgendaSaúde</span>
+      </div>
+      <nav class="lang-switcher" aria-label="Seleção de idioma / Language selection">
+        <button id="lang-pt" class="lang-btn lang-btn--active" aria-pressed="true" data-lang="pt" onclick="setLanguage('pt')">
+          <span aria-hidden="true">🇧🇷</span><span>PT</span><span class="sr-only"> — Português (ativo)</span>
+        </button>
+        <button id="lang-en" class="lang-btn" aria-pressed="false" data-lang="en" onclick="setLanguage('en')">
+          <span aria-hidden="true">🇺🇸</span><span>EN</span><span class="sr-only"> — English</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="stepper" aria-label="Progresso do agendamento" id="stepper">
+    <ol class="stepper-list" role="list">
+      <li class="stepper-item stepper-item--active" data-step="1" id="stepper-1">
+        <span class="stepper-number" aria-hidden="true">1</span>
+        <span class="stepper-label" data-i18n="step.1">Unidade</span>
+      </li>
+      <li class="stepper-item" data-step="2" id="stepper-2">
+        <span class="stepper-number" aria-hidden="true">2</span>
+        <span class="stepper-label" data-i18n="step.2">Especialidade</span>
+      </li>
+      <li class="stepper-item" data-step="3" id="stepper-3">
+        <span class="stepper-number" aria-hidden="true">3</span>
+        <span class="stepper-label" data-i18n="step.3">Data e Hora</span>
+      </li>
+      <li class="stepper-item" data-step="4" id="stepper-4">
+        <span class="stepper-number" aria-hidden="true">4</span>
+        <span class="stepper-label" data-i18n="step.4">Dados</span>
+      </li>
+      <li class="stepper-item" data-step="5" id="stepper-5">
+        <span class="stepper-number" aria-hidden="true">5</span>
+        <span class="stepper-label" data-i18n="step.5">Confirmação</span>
+      </li>
+    </ol>
+  </nav>
+
+  <main id="main-content" class="main-content" tabindex="-1">
+    <div id="live-region" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+    <!-- ETAPA 1 -->
+    <section id="step-1" class="step step--active" aria-labelledby="step1-title" data-step="1">
+      <h1 id="step1-title" class="step-title" data-i18n="step1.title">Selecione a unidade de saúde</h1>
+      <p class="step-desc" data-i18n="step1.desc">Escolha a UPA ou posto de saúde mais próximo de você.</p>
+      <div class="search-wrapper">
+        <label for="search-unit" class="field-label" data-i18n="step1.search.label">Buscar por bairro ou CEP</label>
+        <div class="search-input-wrap">
+          <svg aria-hidden="true" focusable="false" class="search-icon" width="20" height="20" viewBox="0 0 20 20">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M13 13l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="search" id="search-unit" class="text-input" data-i18n-placeholder="step1.search.placeholder" placeholder="Ex: Centro, Jardim, 88000-000" autocomplete="off" aria-controls="unit-list" aria-describedby="search-hint" />
+        </div>
+        <p id="search-hint" class="field-hint" data-i18n="step1.search.hint">Digite ao menos 2 caracteres para filtrar.</p>
+      </div>
+      <ul id="unit-list" class="unit-list" role="list" aria-label="Unidades disponíveis"></ul>
+      <div id="step1-error" class="error-banner" role="alert" aria-live="assertive" hidden>
+        <svg aria-hidden="true" focusable="false" class="error-icon" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 6v5M10 13v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-i18n="error.select.unit">Selecione uma unidade para continuar.</span>
+      </div>
+      <div class="step-actions">
+        <button class="btn btn--primary" onclick="goToStep(2)" data-i18n="btn.next">Continuar</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 2 -->
+    <section id="step-2" class="step" aria-labelledby="step2-title" data-step="2" hidden>
+      <h1 id="step2-title" class="step-title" data-i18n="step2.title">Escolha a especialidade</h1>
+      <p class="step-desc" data-i18n="step2.desc">Selecione a especialidade médica que deseja.</p>
+      <fieldset class="options-fieldset" id="specialty-fieldset">
+        <legend class="sr-only" data-i18n="step2.legend">Especialidades disponíveis</legend>
+        <ul class="options-list" role="list" id="specialty-list"></ul>
+      </fieldset>
+      <div id="step2-error" class="error-banner" role="alert" aria-live="assertive" hidden>
+        <svg aria-hidden="true" focusable="false" class="error-icon" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 6v5M10 13v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-i18n="error.select.specialty">Selecione uma especialidade para continuar.</span>
+      </div>
+      <div class="step-actions step-actions--two">
+        <button class="btn btn--secondary" onclick="goToStep(1)" data-i18n="btn.back">Voltar</button>
+        <button class="btn btn--primary" onclick="goToStep(3)" data-i18n="btn.next">Continuar</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 3 -->
+    <section id="step-3" class="step" aria-labelledby="step3-title" data-step="3" hidden>
+      <h1 id="step3-title" class="step-title" data-i18n="step3.title">Escolha data e horário</h1>
+      <p class="step-desc" data-i18n="step3.desc">Selecione primeiro uma data disponível e depois um horário.</p>
+      <div class="calendar-wrapper">
+        <div class="calendar-header">
+          <button class="calendar-nav-btn" id="prev-month" aria-label="Mês anterior" data-i18n-aria="calendar.prev" onclick="changeMonth(-1)">
+            <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20"><path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          </button>
+          <span id="calendar-month-label" class="calendar-month" aria-live="polite" aria-atomic="true"></span>
+          <button class="calendar-nav-btn" id="next-month" aria-label="Próximo mês" data-i18n-aria="calendar.next" onclick="changeMonth(1)">
+            <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          </button>
+        </div>
+        <div id="calendar-grid" class="calendar-grid" role="grid" aria-labelledby="calendar-month-label"></div>
+      </div>
+      <div id="time-slots-section" class="time-section" hidden>
+        <h2 class="time-section-title" data-i18n="step3.times.title">Horários disponíveis</h2>
+        <p id="selected-date-label" class="time-section-date"></p>
+        <fieldset class="options-fieldset">
+          <legend class="sr-only" data-i18n="step3.times.legend">Selecione um horário</legend>
+          <ul id="time-list" class="time-list" role="list"></ul>
+        </fieldset>
+      </div>
+      <div id="step3-error" class="error-banner" role="alert" aria-live="assertive" hidden>
+        <svg aria-hidden="true" focusable="false" class="error-icon" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 6v5M10 13v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span data-i18n="error.select.datetime">Selecione uma data e um horário para continuar.</span>
+      </div>
+      <div class="step-actions step-actions--two">
+        <button class="btn btn--secondary" onclick="goToStep(2)" data-i18n="btn.back">Voltar</button>
+        <button class="btn btn--primary" onclick="goToStep(4)" data-i18n="btn.next">Continuar</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 4 -->
+    <section id="step-4" class="step" aria-labelledby="step4-title" data-step="4" hidden>
+      <h1 id="step4-title" class="step-title" data-i18n="step4.title">Seus dados</h1>
+      <p class="step-desc" data-i18n="step4.desc">Informe seus dados para registrar o agendamento.</p>
+      <form id="patient-form" class="patient-form" novalidate onsubmit="return false;">
+        <div class="form-group">
+          <label class="field-label" for="patient-name">
+            <span data-i18n="form.name.label">Nome completo</span>
+            <span class="required-mark" aria-hidden="true">*</span>
+            <span class="sr-only" data-i18n="form.required">(obrigatório)</span>
+          </label>
+          <input type="text" id="patient-name" name="patient-name" class="text-input" autocomplete="name" data-i18n-placeholder="form.name.placeholder" placeholder="Ex: Maria da Silva" aria-required="true" aria-describedby="name-error" />
+          <span id="name-error" class="field-error" role="alert" hidden></span>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="patient-cpf">
+            <span data-i18n="form.cpf.label">CPF</span>
+            <span class="required-mark" aria-hidden="true">*</span>
+            <span class="sr-only" data-i18n="form.required">(obrigatório)</span>
+          </label>
+          <input type="text" id="patient-cpf" name="patient-cpf" class="text-input" inputmode="numeric" maxlength="14" autocomplete="off" data-i18n-placeholder="form.cpf.placeholder" placeholder="000.000.000-00" aria-required="true" aria-describedby="cpf-error cpf-hint" />
+          <span id="cpf-hint" class="field-hint" data-i18n="form.cpf.hint">Digite apenas os números — a máscara é aplicada automaticamente.</span>
+          <span id="cpf-error" class="field-error" role="alert" hidden></span>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="patient-birth">
+            <span data-i18n="form.birth.label">Data de nascimento</span>
+            <span class="required-mark" aria-hidden="true">*</span>
+            <span class="sr-only" data-i18n="form.required">(obrigatório)</span>
+          </label>
+          <input type="date" id="patient-birth" name="patient-birth" class="text-input" autocomplete="bday" aria-required="true" aria-describedby="birth-error" />
+          <span id="birth-error" class="field-error" role="alert" hidden></span>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="patient-phone">
+            <span data-i18n="form.phone.label">Telefone</span>
+            <span class="required-mark" aria-hidden="true">*</span>
+            <span class="sr-only" data-i18n="form.required">(obrigatório)</span>
+          </label>
+          <input type="tel" id="patient-phone" name="patient-phone" class="text-input" inputmode="tel" maxlength="15" autocomplete="tel" data-i18n-placeholder="form.phone.placeholder" placeholder="(00) 00000-0000" aria-required="true" aria-describedby="phone-error" />
+          <span id="phone-error" class="field-error" role="alert" hidden></span>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="patient-email">
+            <span data-i18n="form.email.label">E-mail</span>
+            <span class="optional-mark" data-i18n="form.optional">(opcional)</span>
+          </label>
+          <input type="email" id="patient-email" name="patient-email" class="text-input" autocomplete="email" data-i18n-placeholder="form.email.placeholder" placeholder="exemplo@email.com" aria-describedby="email-error" />
+          <span id="email-error" class="field-error" role="alert" hidden></span>
+        </div>
+        <p class="form-required-note">
+          <span class="required-mark" aria-hidden="true">*</span>
+          <span data-i18n="form.required.note">Campos obrigatórios</span>
+        </p>
+      </form>
+      <div class="step-actions step-actions--two">
+        <button class="btn btn--secondary" onclick="goToStep(3)" data-i18n="btn.back">Voltar</button>
+        <button class="btn btn--primary" onclick="goToStep(5)" data-i18n="btn.next">Continuar</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 5 -->
+    <section id="step-5" class="step" aria-labelledby="step5-title" data-step="5" hidden>
+      <div id="review-view">
+        <h1 id="step5-title" class="step-title" data-i18n="step5.review.title">Revise seu agendamento</h1>
+        <p class="step-desc" data-i18n="step5.review.desc">Confirme as informações antes de finalizar.</p>
+        <dl class="review-list" id="review-list"></dl>
+        <div class="step-actions step-actions--two">
+          <button class="btn btn--secondary" onclick="goToStep(4)" data-i18n="btn.back">Voltar</button>
+          <button class="btn btn--primary btn--success" onclick="confirmBooking()" data-i18n="btn.confirm">Confirmar agendamento</button>
+        </div>
+      </div>
+      <div id="receipt-view" hidden>
+        <div class="success-banner" role="status" aria-live="assertive" aria-atomic="true" id="success-announcement">
+          <div class="success-icon-wrap" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="26" fill="#1A6B3C"/><path d="M18 29l7 7 14-15" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h1 id="receipt-title" class="success-title" data-i18n="receipt.title">Agendamento confirmado!</h1>
+          <p class="success-subtitle" data-i18n="receipt.subtitle">Seu atendimento está agendado com sucesso.</p>
+        </div>
+        <div class="protocol-box">
+          <p class="protocol-label" data-i18n="receipt.protocol.label">Número do protocolo</p>
+          <p class="protocol-number" id="protocol-number" aria-live="polite"></p>
+          <button class="btn btn--outline btn--copy" onclick="copyProtocol()" id="copy-btn" data-i18n-aria="receipt.copy.aria" aria-label="Copiar número do protocolo">
+            <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 20 20"><rect x="7" y="7" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 13H3a2 2 0 01-2-2V3a2 2 0 012-2h8a2 2 0 012 2v1" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            <span data-i18n="receipt.copy.btn">Copiar protocolo</span>
+          </button>
+        </div>
+        <dl class="review-list" id="receipt-summary"></dl>
+        <div class="receipt-instructions">
+          <h2 class="instructions-title" data-i18n="receipt.instructions.title">Próximos passos</h2>
+          <ul class="instructions-list" role="list">
+            <li data-i18n="receipt.instructions.1">Chegue com 15 minutos de antecedência.</li>
+            <li data-i18n="receipt.instructions.2">Leve um documento com foto e o cartão SUS.</li>
+            <li data-i18n="receipt.instructions.3">Você receberá uma confirmação no telefone informado.</li>
+          </ul>
+        </div>
+        <div class="step-actions step-actions--receipt">
+          <button class="btn btn--outline" onclick="window.print()" data-i18n="receipt.print.btn">
+            <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 20 20"><path d="M5 7V3h10v4M5 15H3a2 2 0 01-2-2V9a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2M5 11h10v7H5z" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+            <span data-i18n="receipt.print.btn">Imprimir comprovante</span>
+          </button>
+          <button class="btn btn--primary" onclick="resetFlow()" data-i18n="receipt.new.btn">Novo agendamento</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p data-i18n="footer.text">Sistema de Agendamento — Dados fictícios para fins acadêmicos.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

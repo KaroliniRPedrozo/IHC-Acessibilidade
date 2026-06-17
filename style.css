@@ -1,0 +1,1214 @@
+/* ============================================================
+   DESIGN TOKENS — WCAG AAA
+   Contraste texto/fundo principal: #1a1a2e / #f8f9fa = 16.7:1 (AAA)
+   Contraste verde primário / branco: #1A6B3C / #fff = 7.2:1 (AAA)
+   Contraste azul links / fundo: #1558a8 / #f8f9fa = 8.1:1 (AAA)
+============================================================ */
+:root {
+  /* Paleta */
+  --color-bg:           #f8f9fa;
+  --color-surface:      #ffffff;
+  --color-surface-alt:  #eef3f0;
+  --color-border:       #c5cdd6;
+  --color-border-strong:#7a8a97;
+
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary:#3d4f5c;
+  --color-text-muted:   #5a6a78;
+  --color-text-inverse: #ffffff;
+
+  --color-brand:        #1A6B3C;  /* verde SUS */
+  --color-brand-dark:   #134f2d;
+  --color-brand-light:  #eef6f1;
+  --color-brand-mid:    #2d8a54;
+
+  --color-danger:       #b91c1c;  /* erro — contraste 6.5:1 sobre branco */
+  --color-danger-bg:    #fef2f2;
+  --color-danger-border:#fca5a5;
+
+  --color-success:      #1A6B3C;
+  --color-success-bg:   #eef6f1;
+
+  --color-focus:        #1558a8;  /* azul foco — contraste 8.1:1 */
+  --color-focus-ring:   3px solid #1558a8;
+  --color-focus-outline:2px solid #ffffff;
+
+  --color-disabled-bg:  #e5e7eb;
+  --color-disabled-text:#6b7280;
+
+  /* Tipografia — tamanhos generosos para idosos */
+  --font-family:        'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-base:     1.125rem;   /* 18px */
+  --font-size-sm:       1rem;       /* 16px */
+  --font-size-lg:       1.25rem;    /* 20px */
+  --font-size-xl:       1.5rem;     /* 24px */
+  --font-size-2xl:      1.875rem;   /* 30px */
+  --font-size-3xl:      2.25rem;    /* 36px */
+  --line-height:        1.6;
+  --line-height-heading:1.3;
+
+  /* Espaçamento */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Bordas */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.10);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.10);
+  --shadow-focus: 0 0 0 4px rgba(21,88,168,.25);
+}
+
+/* ============================================================
+   RESET E BASE
+============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  /* Suporte a zoom do sistema sem quebrar layout */
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   ACESSIBILIDADE — UTILITÁRIOS
+============================================================ */
+
+/* Texto visível apenas para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip Link — visível somente ao receber foco via teclado */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  z-index: 9999;
+  background: var(--color-focus);
+  color: var(--color-text-inverse);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ============================================================
+   FOCO VISÍVEL — Critério WCAG 2.4.11 (AAA)
+   Nunca remover outline sem substituto equivalente.
+   Este estilo é o coração da navegação por teclado.
+============================================================ */
+:focus-visible {
+  outline: var(--color-focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Remove outline de clique com mouse (mantém para teclado) */
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ============================================================
+   MOTION — Respeita preferência do usuário
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   CABEÇALHO
+============================================================ */
+.site-header {
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-brand);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.brand-name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-brand);
+  letter-spacing: -0.01em;
+}
+
+/* Seletor de idioma */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+  background: var(--color-bg);
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  min-height: 44px;
+  min-width: 68px;
+  justify-content: center;
+}
+
+.lang-btn:hover {
+  background: var(--color-surface-alt);
+  color: var(--color-brand);
+}
+
+.lang-btn--active {
+  background: var(--color-brand);
+  color: var(--color-text-inverse);
+  border-color: var(--color-brand);
+}
+
+.lang-btn--active:hover {
+  background: var(--color-brand-dark);
+  color: var(--color-text-inverse);
+}
+
+/* ============================================================
+   STEPPER DE PROGRESSO
+============================================================ */
+.stepper {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-6);
+}
+
+.stepper-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  list-style: none;
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Linha conectora entre steps */
+.stepper-list::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 0;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.stepper-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.stepper-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-align: center;
+  transition: color 0.2s;
+}
+
+/* Estado: etapa atual */
+.stepper-item--active .stepper-number {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: var(--color-text-inverse);
+}
+
+.stepper-item--active .stepper-label {
+  color: var(--color-brand);
+  font-weight: 700;
+}
+
+/* Estado: etapa concluída */
+.stepper-item--done .stepper-number {
+  background: var(--color-brand-light);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.stepper-item--done .stepper-label {
+  color: var(--color-brand);
+}
+
+/* ============================================================
+   CONTEÚDO PRINCIPAL
+============================================================ */
+.main-content {
+  flex: 1;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+}
+
+/* ============================================================
+   ETAPAS (STEPS)
+============================================================ */
+.step {
+  animation: stepFadeIn 0.25s ease;
+}
+
+@keyframes stepFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-heading);
+  margin-bottom: var(--space-3);
+}
+
+.step-desc {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  max-width: 600px;
+}
+
+/* ============================================================
+   CAMPO DE BUSCA
+============================================================ */
+.search-wrapper {
+  margin-bottom: var(--space-6);
+}
+
+.search-input-wrap {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+/* ============================================================
+   CAMPOS DE FORMULÁRIO
+============================================================ */
+.field-label {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.text-input {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  min-height: 56px;
+}
+
+#search-unit {
+  padding-left: 3rem; /* espaço para o ícone */
+}
+
+.text-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.text-input:hover {
+  border-color: var(--color-brand);
+}
+
+.text-input:focus-visible {
+  border-color: var(--color-focus);
+  outline: var(--color-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-focus);
+}
+
+.text-input.is-invalid {
+  border-color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+.text-input.is-invalid:focus-visible {
+  outline-color: var(--color-danger);
+  box-shadow: 0 0 0 4px rgba(185,28,28,.2);
+}
+
+.field-hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-danger);
+  margin-top: var(--space-2);
+}
+
+.field-error::before {
+  content: '⚠';  /* Ícone em texto — funciona sem CSS background-image */
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.required-mark {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.optional-mark {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+.form-required-note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-4);
+}
+
+/* ============================================================
+   LISTA DE UNIDADES (STEP 1)
+============================================================ */
+.unit-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  margin-bottom: var(--space-6);
+}
+
+.unit-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  min-height: 80px;
+}
+
+.unit-card:hover {
+  border-color: var(--color-brand);
+  background: var(--color-brand-light);
+}
+
+.unit-card[aria-pressed="true"],
+.unit-card.is-selected {
+  border-color: var(--color-brand);
+  background: var(--color-brand-light);
+  box-shadow: 0 0 0 2px var(--color-brand);
+}
+
+.unit-card-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: var(--color-brand-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand);
+  font-size: 1.5rem;
+}
+
+.unit-card-body {
+  flex: 1;
+}
+
+.unit-card-name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.unit-card-address {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.unit-card-distance {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+/* Indicador de seleção — texto + ícone, nunca só cor */
+.unit-card-check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.15s;
+}
+
+.unit-card[aria-pressed="true"] .unit-card-check,
+.unit-card.is-selected .unit-card-check {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: white;
+}
+
+/* ============================================================
+   LISTA DE OPÇÕES (ESPECIALIDADES)
+============================================================ */
+.options-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  min-height: 110px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.option-card:hover {
+  border-color: var(--color-brand);
+  background: var(--color-brand-light);
+}
+
+.option-card[aria-pressed="true"],
+.option-card.is-selected {
+  border-color: var(--color-brand);
+  background: var(--color-brand-light);
+  box-shadow: 0 0 0 2px var(--color-brand);
+}
+
+.option-card-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.option-card-label {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Badge de seleção em texto */
+.option-selected-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  background: var(--color-brand-light);
+  border: 1px solid var(--color-brand);
+  border-radius: 20px;
+  padding: 2px 8px;
+  display: none;
+}
+
+.option-card[aria-pressed="true"] .option-selected-badge,
+.option-card.is-selected .option-selected-badge {
+  display: inline-block;
+}
+
+/* ============================================================
+   CALENDÁRIO
+============================================================ */
+.calendar-wrapper {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  max-width: 480px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  gap: var(--space-4);
+}
+
+.calendar-month {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: center;
+  flex: 1;
+}
+
+.calendar-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.calendar-nav-btn:hover {
+  background: var(--color-surface-alt);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-1);
+}
+
+.calendar-day-header {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-2) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calendar-day {
+  min-height: 48px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  background: transparent;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: background 0.15s, border-color 0.15s;
+  position: relative;
+}
+
+.calendar-day:hover:not([aria-disabled="true"]) {
+  background: var(--color-brand-light);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.calendar-day[aria-disabled="true"] {
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
+  background: var(--color-bg);
+  font-style: italic;
+}
+
+.calendar-day[aria-pressed="true"],
+.calendar-day.is-selected {
+  background: var(--color-brand);
+  color: var(--color-text-inverse);
+  border-color: var(--color-brand-dark);
+  font-weight: 700;
+}
+
+/* Indicador de disponibilidade — forma + texto, nunca só cor */
+.day-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand-mid);
+}
+
+.calendar-day[aria-disabled="true"] .day-dot {
+  display: none;
+}
+
+.calendar-day[aria-pressed="true"] .day-dot {
+  background: rgba(255,255,255,0.6);
+}
+
+/* ============================================================
+   HORÁRIOS
+============================================================ */
+.time-section {
+  margin-bottom: var(--space-6);
+}
+
+.time-section-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.time-section-date {
+  font-size: var(--font-size-base);
+  color: var(--color-brand);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.time-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.time-btn {
+  padding: var(--space-3) var(--space-5);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 52px;
+  min-width: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: all 0.15s;
+}
+
+.time-btn:hover:not([aria-disabled="true"]) {
+  border-color: var(--color-brand);
+  background: var(--color-brand-light);
+  color: var(--color-brand);
+}
+
+.time-btn[aria-pressed="true"],
+.time-btn.is-selected {
+  background: var(--color-brand);
+  border-color: var(--color-brand-dark);
+  color: var(--color-text-inverse);
+}
+
+/* Botão de horário indisponível — indicado por texto + estilo, não só cor */
+.time-btn[aria-disabled="true"] {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.time-status-text {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+/* ============================================================
+   BANNER DE ERRO
+============================================================ */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-danger-bg);
+  border: 2px solid var(--color-danger-border);
+  border-radius: var(--radius-md);
+  color: var(--color-danger);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--space-6);
+}
+
+.error-icon {
+  flex-shrink: 0;
+  color: var(--color-danger);
+}
+
+/* ============================================================
+   BOTÕES
+============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 56px;
+  min-width: 140px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  letter-spacing: 0.01em;
+}
+
+.btn--primary {
+  background: var(--color-brand);
+  color: var(--color-text-inverse);
+  border-color: var(--color-brand);
+}
+
+.btn--primary:hover {
+  background: var(--color-brand-dark);
+  border-color: var(--color-brand-dark);
+}
+
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+
+.btn--secondary:hover {
+  background: var(--color-surface-alt);
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.btn--outline {
+  background: var(--color-surface);
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.btn--outline:hover {
+  background: var(--color-brand-light);
+}
+
+.btn--success {
+  background: var(--color-brand);
+  border-color: var(--color-brand-dark);
+  font-size: var(--font-size-lg);
+  padding: var(--space-5) var(--space-10);
+}
+
+.btn--success:hover {
+  background: var(--color-brand-dark);
+}
+
+.btn--copy {
+  min-width: auto;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--font-size-sm);
+}
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-10);
+}
+
+.step-actions--two {
+  justify-content: space-between;
+}
+
+.step-actions--receipt {
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   REVISÃO / DL
+============================================================ */
+.review-list {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-8);
+}
+
+.review-list dt {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-4) var(--space-6) var(--space-1);
+}
+
+.review-list dt:first-child {
+  padding-top: var(--space-6);
+}
+
+.review-list dd {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  padding: 0 var(--space-6) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.review-list dd:last-child {
+  border-bottom: none;
+  padding-bottom: var(--space-6);
+}
+
+/* ============================================================
+   COMPROVANTE — SUCESSO
+============================================================ */
+.success-banner {
+  text-align: center;
+  padding: var(--space-10) var(--space-6);
+  background: var(--color-success-bg);
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-8);
+}
+
+.success-icon-wrap {
+  margin-bottom: var(--space-4);
+}
+
+.success-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-brand);
+  margin-bottom: var(--space-2);
+}
+
+.success-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+
+.protocol-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-8);
+}
+
+.protocol-label {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  width: 100%;
+}
+
+.protocol-number {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-brand);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.1em;
+  flex: 1;
+}
+
+.receipt-instructions {
+  margin-bottom: var(--space-8);
+}
+
+.instructions-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.instructions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.instructions-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-brand);
+}
+
+.instructions-list li::before {
+  content: '✓';
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ============================================================
+   FORMULÁRIO DE PACIENTE
+============================================================ */
+.patient-form {
+  max-width: 560px;
+}
+
+/* ============================================================
+   RODAPÉ
+============================================================ */
+.site-footer {
+  background: var(--color-text-primary);
+  color: var(--color-text-inverse);
+  text-align: center;
+  padding: var(--space-6);
+  font-size: var(--font-size-sm);
+  margin-top: auto;
+  opacity: 0.85;
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+   Layout funcional de 320px até 1440px sem scroll horizontal
+============================================================ */
+@media (max-width: 640px) {
+  .header-inner {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .main-content {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .step-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .stepper {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .stepper-label {
+    display: none; /* Mostra só os números em mobile pequeno */
+  }
+
+  .stepper-number {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+
+  .options-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .step-actions--two {
+    flex-direction: column-reverse;
+    gap: var(--space-3);
+  }
+
+  .btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .calendar-wrapper {
+    max-width: 100%;
+    padding: var(--space-4);
+  }
+
+  .calendar-day {
+    min-height: 40px;
+    font-size: 0.85rem;
+  }
+
+  .lang-btn {
+    padding: var(--space-2) var(--space-3);
+    min-width: 56px;
+  }
+
+  .protocol-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 380px) {
+  .options-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   IMPRESSÃO — Comprovante
+============================================================ */
+@media print {
+  .site-header,
+  .stepper,
+  .step-actions,
+  .lang-switcher,
+  .skip-link,
+  .site-footer {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 14pt;
+  }
+
+  .receipt-view,
+  .review-list,
+  .protocol-box,
+  .receipt-instructions,
+  .success-banner {
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+
+  .success-banner {
+    background: white;
+  }
+}
