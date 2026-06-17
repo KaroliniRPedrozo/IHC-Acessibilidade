@@ -1,7 +1,5 @@
 # AgendaSaúde — Sistema de Agendamento de Consultas com Foco em Acessibilidade
 
-<div align="center">
-
 ![AgendaSaúde](https://img.shields.io/badge/IHC-UFSC-green)
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 ![Licença](https://img.shields.io/badge/Licença-GNU%20GPL%20v3-blue)
@@ -9,9 +7,7 @@
 
 Um sistema web moderno e acessível para agendamento de consultas de saúde, desenvolvido com foco em **inclusão digital** e **experiência do usuário**.
 
-[**Demo Online**](#) • [**Documentação**](#documentação) • [**Contribuir**](#contribuição)
-
-</div>
+[Documentação Adicional](#-documentação-adicional) • [Contribuição](#-contribuição) • [Licença](#-licença)
 
 ---
 
@@ -20,6 +16,7 @@ Um sistema web moderno e acessível para agendamento de consultas de saúde, des
 **AgendaSaúde** é uma aplicação web educacional desenvolvida no contexto da disciplina de **Interação Humano-Computador (IHC)** da Universidade Federal de Santa Catarina (UFSC), Campus Araranguá.
 
 O projeto demonstra boas práticas de design inclusivo, com especial atenção a:
+
 - **Usuários idosos** — interfaces grandes, legíveis e intuitivas
 - **Usuários com deficiências visuais** — suporte a leitores de tela e navegação por teclado
 - **Usuários com deficiências motoras** — interações acessíveis e sem barreira
@@ -28,27 +25,32 @@ O projeto demonstra boas práticas de design inclusivo, com especial atenção a
 ### Características Principais
 
 ✨ **Interface Intuitiva**
+
 - Fluxo de agendamento dividido em 5 etapas claras
 - Progresso visual através de indicador (stepper)
 - Validações em tempo real com mensagens de erro descritivas
 
 ♿ **Acessibilidade em Primeiro Lugar**
+
 - Conformidade com **WCAG 2.1 AAA** (nível máximo)
 - Suporte completo a navegação por teclado
 - Compatibilidade com leitores de tela (NVDA, JAWS, VoiceOver)
 - Contraste de cores AAA (mínimo 7:1 em modo claro, 4.5:1 em modo escuro)
 
 🌐 **Multilíngue**
+
 - Português Brasileiro (padrão)
 - Inglês
 - Sistema i18n implementado sem dependências externas
 
 🌙 **Modo Escuro**
+
 - Alternância automática baseada em preferências do sistema
 - Proteção de olhos com contraste otimizado
 - Armazenamento de preferência do usuário
 
 📱 **Design Responsivo**
+
 - Totalmente funcional em dispositivos móveis, tablets e desktops
 - Tipografia escalável (bases em 1.125rem = 18px)
 - Espaçamento generoso para facilitar cliques
@@ -60,7 +62,7 @@ O projeto demonstra boas práticas de design inclusivo, com especial atenção a
 O sistema guia o usuário por 5 etapas intuitivas:
 
 | Etapa | Título | Descrição |
-|-------|--------|-----------|
+| --- | --- | --- |
 | 1️⃣ | **Unidade** | Selecionar a unidade de saúde mais próxima (UPA/posto) |
 | 2️⃣ | **Especialidade** | Escolher a especialidade médica desejada |
 | 3️⃣ | **Data e Hora** | Selecionar data e horário de atendimento |
@@ -74,7 +76,7 @@ O sistema guia o usuário por 5 etapas intuitivas:
 ### Tecnologias Utilizadas
 
 | Componente | Tecnologia | Versão |
-|-----------|-----------|--------|
+| --- | --- | --- |
 | **Frontend** | HTML5 + CSS3 + JavaScript (Vanilla) | ES2020+ |
 | **Styling** | CSS Grid + Flexbox | — |
 | **Internacionalização** | i18n Nativo | Custom |
@@ -85,6 +87,7 @@ O sistema guia o usuário por 5 etapas intuitivas:
 ### Por Que Vanilla JS?
 
 Optou-se por **não usar frameworks** (React, Vue, Angular) para:
+
 - ✅ Demonstrar boas práticas de acessibilidade com HTML semântico puro
 - ✅ Reduzir dependências e complexidade
 - ✅ Facilitar aprendizado em contexto acadêmico
@@ -94,7 +97,7 @@ Optou-se por **não usar frameworks** (React, Vue, Angular) para:
 
 ## 📁 Estrutura do Projeto
 
-```
+```text
 IHC-Acessibilidade/
 ├── index.html           # Página principal — estrutura semântica completa
 ├── style.css            # Design tokens, componentes, dark mode
@@ -107,6 +110,7 @@ IHC-Acessibilidade/
 ### Descrição dos Arquivos
 
 **`index.html`**
+
 - Estrutura HTML semântica com roles ARIA
 - Skip links para navegação por teclado
 - Elementos de live region para notificações
@@ -114,6 +118,7 @@ IHC-Acessibilidade/
 - Mais de 1000 linhas de markup bem estruturado
 
 **`style.css`**
+
 - Design tokens (cores, tipografia, espaçamento) com `--custom-properties`
 - Componentes reutilizáveis (`.btn`, `.field`, `.card`)
 - Modo escuro com paleta ajustada para contraste
@@ -121,6 +126,7 @@ IHC-Acessibilidade/
 - Sem dependências de frameworks CSS
 
 **`script.js`**
+
 - Motor i18n com suporte pt/en
 - Gerenciamento de estado (etapas, dados selecionados)
 - Validações (CPF, email, telefone, data)
@@ -139,7 +145,7 @@ IHC-Acessibilidade/
 
 ### Como Executar Localmente
 
-**Opção 1: Servidor HTTP Local (Recomendado)**
+#### Opção 1: Servidor HTTP Local (Recomendado)
 
 ```bash
 # Com Python 3
@@ -154,7 +160,7 @@ npx http-server
 
 Acesse: `http://localhost:8000`
 
-**Opção 2: Diretamente no Navegador**
+#### Opção 2: Diretamente no Navegador
 
 ```bash
 # Windows
@@ -174,7 +180,7 @@ xdg-open index.html
 1. **Navegação por Teclado**: Use `Tab`, `Shift+Tab`, `Enter`, `Space`
 2. **Modo Escuro**: Clique no ícone 🌙 na barra superior
 3. **Idioma**: Alterne entre PT/EN nos botões de bandeira
-4. **Leitor de Tela**: 
+4. **Leitor de Tela**:
    - Windows: NVDA (gratuito)
    - macOS: VoiceOver (nativo)
    - Web: ChromeVox (extensão)
@@ -190,7 +196,7 @@ Este projeto alcança o **nível AAA de conformidade** (o mais alto), garantindo
 #### 🎨 Contraste de Cores
 
 | Elemento | Modo Claro | Modo Escuro | Ratio |
-|----------|-----------|-----------|-------|
+| --- | --- | --- | --- |
 | Texto principal | #1a1a2e sobre #f8f9fa | #f0f2f5 sobre #0f1419 | **16.7:1** (AAA) |
 | Marca verde | #1A6B3C sobre #fff | #2d9d6c sobre #0f1419 | **7.2:1** (AAA) |
 | Links (azul) | #1558a8 sobre #f8f9fa | #60a5fa sobre #0f1419 | **8.1:1** (AAA) |
@@ -241,7 +247,7 @@ O projeto implementa um sistema i18n **zero-dependências** nativo em JavaScript
 ### Idiomas Suportados
 
 | Idioma | Código | Status |
-|--------|--------|--------|
+| --- | --- | --- |
 | Português Brasileiro | `pt` | ✅ Completo |
 | English (US) | `en` | ✅ Completo |
 | Español | `es` | 🔄 Planejado |
@@ -300,12 +306,14 @@ const TRANSLATIONS = {
 ### Cores (Design Tokens)
 
 **Modo Claro:**
+
 - Background: `#f8f9fa`
 - Surface: `#ffffff`
 - Texto primário: `#1a1a2e`
 - Marca (verde SUS): `#1A6B3C`
 
 **Modo Escuro:**
+
 - Background: `#0f1419`
 - Surface: `#1a1f2e`
 - Texto primário: `#f0f2f5`
@@ -330,6 +338,7 @@ const TRANSLATIONS = {
 ### Responsividade
 
 Breakpoints (mobile-first):
+
 - **xs**: 0px — 480px (mobile)
 - **sm**: 481px — 768px (tablet)
 - **md**: 769px — 1024px (desktop pequeno)
@@ -363,7 +372,7 @@ Todos os dados são **fictícios** e armazenados localmente via `LocalStorage`:
 
 ### Dados Pessoais do Usuário (Exemplo)
 
-```javascript
+```json
 {
   "name": "Maria da Silva",
   "cpf": "123.456.789-00",
@@ -374,6 +383,7 @@ Todos os dados são **fictícios** e armazenados localmente via `LocalStorage`:
 ```
 
 > ⚠️ **Importante**: Este é um **projeto acadêmico**. Em produção, seria necessário:
+>
 > - Backend seguro com autenticação
 > - Integração com API real de agendamentos
 > - Validação servidor-lado
@@ -420,7 +430,7 @@ Todos os dados são **fictícios** e armazenados localmente via `LocalStorage`:
 
 ### Arquivos de Documentação Recomendados
 
-```
+```text
 📚 docs/
 ├── ACESSIBILIDADE.md      # Guia detalhado de boas práticas
 ├── ARQUITETURA.md         # Diagrama e decisões arquiteturais
@@ -454,6 +464,7 @@ Contribuições são bem-vindas! Por favor, siga os passos abaixo:
 ### Padrões de Código
 
 #### JavaScript
+
 ```javascript
 // Use camelCase para variáveis e funções
 const selectedUnit = getSelectedUnit();
@@ -466,6 +477,7 @@ const x = 10;
 ```
 
 #### CSS
+
 ```css
 /* Use kebab-case para classes */
 .step-title { }
@@ -483,6 +495,7 @@ const x = 10;
 ```
 
 #### HTML
+
 ```html
 <!-- Use lowercase para atributos -->
 <button class="btn" aria-label="Enviar">Enviar</button>
@@ -497,6 +510,7 @@ const x = 10;
 ### Reportar Issues
 
 Abra uma issue com:
+
 - Descrição clara do problema
 - Passos para reproduzir
 - Evidência de acessibilidade afetada (se aplicável)
@@ -508,12 +522,14 @@ Abra uma issue com:
 
 Este projeto está licenciado sob a **GNU General Public License v3.0** — veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-### Você pode:
+### Você pode
+
 ✅ Usar, modificar e distribuir o código  
 ✅ Incluir em projetos comerciais  
 ✅ Copiar e adaptar para seus fins  
 
-### Você deve:
+### Você deve
+
 📋 Incluir aviso de licença  
 📋 Divulgar as mudanças  
 📋 Usar a mesma licença (GPL v3)  
@@ -549,10 +565,6 @@ Dúvidas ou sugestões?
 
 ---
 
-<div align="center">
-
-### Desenvolvido com ❤️ e ♿ Acessibilidade em Mente
+## Desenvolvido com ❤️ e ♿ Acessibilidade em Mente
 
 ⭐ Se este projeto foi útil, considere deixar uma estrela!
-
-</div>
