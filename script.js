@@ -20,6 +20,8 @@ const TRANSLATIONS = {
     'btn.next':         'Continuar',
     'btn.back':         'Voltar',
     'btn.confirm':      'Confirmar agendamento',
+    'theme.dark':       'Modo escuro',
+    'theme.light':      'Modo claro',
 
     // Stepper
     'step.1': 'Unidade',
@@ -125,6 +127,8 @@ const TRANSLATIONS = {
     'btn.next':         'Continue',
     'btn.back':         'Back',
     'btn.confirm':      'Confirm appointment',
+    'theme.dark':       'Dark mode',
+    'theme.light':      'Light mode',
 
     // Stepper
     'step.1': 'Location',
@@ -314,6 +318,19 @@ function setLanguage(lang) {
   document.querySelectorAll('[data-i18n-aria]').forEach(el => {
     el.setAttribute('aria-label', t(el.dataset.i18nAria));
   });
+
+  // Atualiza label do botão de dark mode
+  const isDarkMode = document.documentElement.classList.contains('dark-mode');
+  const label = document.getElementById('dark-mode-label');
+  const btn = document.getElementById('toggle-dark-mode');
+  if (label) {
+    const themeKey = isDarkMode ? 'theme.light' : 'theme.dark';
+    label.textContent = t(themeKey);
+  }
+  if (btn) {
+    const themeKey = isDarkMode ? 'theme.light' : 'theme.dark';
+    btn.title = t(themeKey);
+  }
 
   // Re-renderiza componentes dinâmicos
   renderUnitList(document.getElementById('search-unit').value);
@@ -956,12 +973,66 @@ function maskPhone(value) {
 }
 
 // ============================================================
+// MODO ESCURO (Dark Mode)
+// ============================================================
+function initDarkMode() {
+  // Verifica preferência salva no localStorage
+  const savedTheme = localStorage.getItem('agendaSaude-theme');
+  
+  // Se não há preferência salva, respeita a preferência do sistema
+  let isDarkMode = savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  applyDarkMode(isDarkMode);
+}
+
+function toggleDarkMode() {
+  const isDarkMode = document.documentElement.classList.contains('dark-mode');
+  applyDarkMode(!isDarkMode);
+}
+
+function applyDarkMode(isDarkMode) {
+  const html = document.documentElement;
+  const btn = document.getElementById('toggle-dark-mode');
+  const label = document.getElementById('dark-mode-label');
+  const currentLang = getCurrentLanguage();
+  
+  if (isDarkMode) {
+    html.classList.add('dark-mode');
+    btn.setAttribute('aria-pressed', 'true');
+    if (label) {
+      const themeText = currentLang === 'en' ? 'Switch to light mode' : 'Ativar modo claro';
+      label.textContent = themeText;
+    }
+    if (btn) {
+      btn.title = currentLang === 'en' ? 'Light mode' : 'Modo claro';
+    }
+    localStorage.setItem('agendaSaude-theme', 'dark');
+  } else {
+    html.classList.remove('dark-mode');
+    btn.setAttribute('aria-pressed', 'false');
+    if (label) {
+      const themeText = currentLang === 'en' ? 'Switch to dark mode' : 'Ativar modo escuro';
+      label.textContent = themeText;
+    }
+    if (btn) {
+      btn.title = currentLang === 'en' ? 'Dark mode' : 'Modo escuro';
+    }
+    localStorage.setItem('agendaSaude-theme', 'light');
+  }
+}
+
+function getCurrentLanguage() {
+  const btnPt = document.getElementById('lang-pt');
+  return btnPt?.classList.contains('lang-btn--active') ? 'pt' : 'en';
+}
+
+// ============================================================
 // INICIALIZAÇÃO
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Renderiza listas iniciais
-  renderUnitList();
+  // Inicializa modo escuro
+  initDarkMode();
   renderSpecialtyList();
 
   // Inicializa stepper

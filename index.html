@@ -20,13 +20,19 @@
         </svg>
         <span class="brand-name" data-i18n="brand.name">AgendaSaúde</span>
       </div>
-      <nav class="lang-switcher" aria-label="Seleção de idioma / Language selection">
-        <button id="lang-pt" class="lang-btn lang-btn--active" aria-pressed="true" data-lang="pt" onclick="setLanguage('pt')">
-          <span aria-hidden="true">🇧🇷</span><span>PT</span><span class="sr-only"> — Português (ativo)</span>
+      <nav class="header-controls" aria-label="Controles da interface">
+        <button id="toggle-dark-mode" class="theme-btn" aria-pressed="false" aria-label="Ativar modo escuro" title="Modo escuro" onclick="toggleDarkMode()">
+          <span aria-hidden="true">🌙</span>
+          <span class="sr-only" id="dark-mode-label">Ativar modo escuro</span>
         </button>
-        <button id="lang-en" class="lang-btn" aria-pressed="false" data-lang="en" onclick="setLanguage('en')">
-          <span aria-hidden="true">🇺🇸</span><span>EN</span><span class="sr-only"> — English</span>
-        </button>
+        <nav class="lang-switcher" aria-label="Seleção de idioma / Language selection">
+          <button id="lang-pt" class="lang-btn lang-btn--active" aria-pressed="true" data-lang="pt" onclick="setLanguage('pt')">
+            <span aria-hidden="true">🇧🇷</span><span>PT</span><span class="sr-only"> — Português (ativo)</span>
+          </button>
+          <button id="lang-en" class="lang-btn" aria-pressed="false" data-lang="en" onclick="setLanguage('en')">
+            <span aria-hidden="true">🇺🇸</span><span>EN</span><span class="sr-only"> — English</span>
+          </button>
+        </nav>
       </nav>
     </div>
   </header>
