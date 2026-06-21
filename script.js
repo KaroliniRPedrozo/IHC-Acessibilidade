@@ -1198,8 +1198,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setLanguage('pt');
 });
 // ============================================================
-// MOTOR DE LEITURA DE TELA (WEB SPEECH API)
+// MOTOR DE LEITURA DE TELA (WEB SPEECH API) - APRIMORADO
 // ============================================================
+let lastReadElement = null; // Variável para evitar que ele repita o mesmo texto sem parar
+
 function toggleAudio() {
   state.audioEnabled = !state.audioEnabled;
   const btn = document.getElementById('toggle-audio');
@@ -1209,33 +1211,76 @@ function toggleAudio() {
 
   if (state.audioEnabled) {
     icon.textContent = '🔊';
-    // Mensagem de boas-vindas ao ativar
-    const msg = state.lang === 'pt' ? 'Áudio ativado' : 
-                state.lang === 'es' ? 'Audio activado' : 'Audio enabled';
+    // Mensagem inicial ensinando a usar
+    const msg = state.lang === 'pt' ? 'Áudio ativado. Navegue pelo site com o mouse ou teclado para ouvir.' : 
+                state.lang === 'es' ? 'Audio activado. Navegue por el sitio para escuchar.' : 
+                'Audio enabled. Navigate the site to listen.';
     speakText(msg);
+    initAudioReader(); // Liga os sensores de leitura
   } else {
     icon.textContent = '🔇';
-    window.speechSynthesis.cancel(); // Para de falar imediatamente
+    window.speechSynthesis.cancel(); // Cala a boca na hora
+    removeAudioReader(); // Desliga os sensores
   }
 }
 
 function speakText(text) {
-  // Só fala se o botão estiver ativado e se o navegador suportar
   if (!state.audioEnabled || !('speechSynthesis' in window)) return;
-
-  // Cancela a fala anterior para não embolar as vozes
-  window.speechSynthesis.cancel();
-
+  
+  window.speechSynthesis.cancel(); // Para a frase anterior para ler a nova imediatamente
+  
   const utterance = new SpeechSynthesisUtterance(text);
-
-  // Troca o sotaque e idioma da voz de acordo com o sistema
+  
   if (state.lang === 'pt') utterance.lang = 'pt-BR';
   else if (state.lang === 'en') utterance.lang = 'en-US';
   else if (state.lang === 'es') utterance.lang = 'es-ES';
-
-  // Ajustes de ergonomia cognitiva: fala levemente mais devagar para idosos
-  utterance.rate = 0.9; 
+  
+  utterance.rate = 0.9; // Um pouco mais lento para clareza
   utterance.pitch = 1.0;
-
+  
   window.speechSynthesis.speak(utterance);
+}
+
+// O CÉREBRO DO LEITOR: Decide o que ler e quando ler
+function handleReadElement(e) {
+  if (!state.audioEnabled) return;
+
+  // Filtra apenas elementos que faz sentido ler (textos, botões e campos)
+  const readable = e.target.closest('h1, h2, p, button, a, input, label, .unit-card, .review-list dt, .review-list dd');
+  
+  // Se não tem texto ou é o mesmo elemento de antes, ignora
+  if (!readable || readable === lastReadElement) return;
+
+  lastReadElement = readable;
+
+  // Ignora o botão de áudio para não ser repetitivo
+  if (readable.id === 'toggle-audio') return;
+
+  // Magia da Acessibilidade: Prioriza atributos ocultos (aria-label)
+  let textToRead = readable.getAttribute('aria-label') || readable.innerText;
+
+  // Tratamento especial para formulários (Lê o Título do campo + o Placeholder ou Valor)
+  if (readable.tagName === 'INPUT') {
+     const labelText = readable.closest('.form-group')?.querySelector('.field-label')?.innerText || '';
+     const valueText = readable.value || readable.getAttribute('placeholder') || '';
+     textToRead = `${labelText}. ${valueText}`;
+  }
+
+  // Envia para o motor falar
+  if (textToRead && textToRead.trim() !== '') {
+    speakText(textToRead.trim());
+  }
+}
+
+// Liga os sensores
+function initAudioReader() {
+  document.addEventListener('focusin', handleReadElement);   // Detecta navegação por teclado (Tab)
+  document.addEventListener('mouseover', handleReadElement); // Detecta navegação por mouse
+}
+
+// Desliga os sensores
+function removeAudioReader() {
+  document.removeEventListener('focusin', handleReadElement);
+  document.removeEventListener('mouseover', handleReadElement);
+  lastReadElement = null;
 }
