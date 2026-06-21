@@ -313,12 +313,12 @@ body {
   transform: scale(0.95);
 }
 
-html.dark-mode .theme-btn::before {
+html.dark-mode #toggle-dark-mode::before {
   content: '☀️';
   position: absolute;
 }
 
-html.dark-mode .theme-btn {
+html.dark-mode #toggle-dark-mode {
   transform: none;
 }
 
