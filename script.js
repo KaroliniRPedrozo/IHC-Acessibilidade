@@ -1097,33 +1097,35 @@ function applyDarkMode(isDarkMode) {
   const html = document.documentElement;
   const btn = document.getElementById('toggle-dark-mode');
   const label = document.getElementById('dark-mode-label');
-  const currentLang = getCurrentLanguage();
   
+  // 1. Aplica as classes visuais e o estado do botão (aria-pressed)
   if (isDarkMode) {
     html.classList.add('dark-mode');
     btn.setAttribute('aria-pressed', 'true');
-    if (label) {
-      const themeText = currentLang === 'en' ? 'Switch to light mode' : 'Ativar modo claro';
-      label.textContent = themeText;
-    }
-    if (btn) {
-      btn.title = currentLang === 'en' ? 'Light mode' : 'Modo claro';
-    }
     localStorage.setItem('agendaSaude-theme', 'dark');
   } else {
     html.classList.remove('dark-mode');
     btn.setAttribute('aria-pressed', 'false');
-    if (label) {
-      const themeText = currentLang === 'en' ? 'Switch to dark mode' : 'Ativar modo escuro';
-      label.textContent = themeText;
-    }
-    if (btn) {
-      btn.title = currentLang === 'en' ? 'Dark mode' : 'Modo escuro';
-    }
     localStorage.setItem('agendaSaude-theme', 'light');
   }
-}
 
+  // 2. Atualiza os textos do botão de forma inteligente (Respeitando PT, EN e ES)
+  const themeKey = isDarkMode ? 'theme.light' : 'theme.dark';
+  if (label) label.textContent = t(themeKey);
+  if (btn) btn.title = t(themeKey);
+
+  // 3. CORREÇÃO DE ÁUDIO: Dispara o aviso falado no momento exato do clique!
+  let announceMsg = isDarkMode ? 'Dark mode enabled' : 'Light mode enabled';
+  
+  if (state.lang === 'pt') {
+    announceMsg = isDarkMode ? 'Modo escuro ativado' : 'Modo claro ativado';
+  } else if (state.lang === 'es') {
+    announceMsg = isDarkMode ? 'Modo oscuro activado' : 'Modo claro activado';
+  }
+
+  // Chama a função announce (que também ativa o seu Leitor de Voz Web Speech API)
+  announce(announceMsg);
+}
 function getCurrentLanguage() {
   const btnPt = document.getElementById('lang-pt');
   const btnEs = document.getElementById('lang-es');
