@@ -313,24 +313,26 @@ body {
   transform: scale(0.95);
 }
 
-/* Correção total do Modo Escuro */
-html.dark-mode #toggle-dark-mode::before {
-  content: '☀️';
-  position: absolute;
-  /* Garante que o ícone fica centralizado */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Oculta o ícone da lua quando estiver no Modo Escuro */
+/* 1. Ocultar o ícone da Lua (o span que contém 🌙) APENAS no modo escuro */
 html.dark-mode #toggle-dark-mode span[aria-hidden="true"] {
-  display: none;
+    display: none;
 }
 
-/* Garante que o botão do modo escuro não tente aplicar transformações no botão de áudio */
+/* 2. Injetar o Sol APENAS no botão de modo escuro */
+html.dark-mode #toggle-dark-mode::before {
+    content: '☀️';
+    position: absolute;
+    /* Garantir que ele ocupe o centro do botão */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 3. Limpeza de transformações para evitar bug visual */
 html.dark-mode #toggle-dark-mode {
-  transform: none;
+    transform: none;
 }
 
 /* ============================================================
