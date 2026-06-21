@@ -1241,14 +1241,14 @@ function speakText(text) {
   window.speechSynthesis.speak(utterance);
 }
 
-// O CÉREBRO DO LEITOR: Decide o que ler e quando ler
+/// O CÉREBRO DO LEITOR: Decide o que ler e quando ler
 function handleReadElement(e) {
   if (!state.audioEnabled) return;
 
-  // Filtra apenas elementos que faz sentido ler (textos, botões e campos)
-  const readable = e.target.closest('h1, h2, p, button, a, input, label, .unit-card, .review-list dt, .review-list dd');
-  
-  // Se não tem texto ou é o mesmo elemento de antes, ignora
+  // 1. ALARGÁMOS O FILTRO: Agora apanha spans, listas (li), legendas e botões do calendário
+  const readable = e.target.closest('h1, h2, h3, p, button, a, input, label, li, span, legend, .unit-card, .calendar-day, .time-btn');
+
+  // Se não tem texto ou é o mesmo elemento de antes, ignora para não repetir
   if (!readable || readable === lastReadElement) return;
 
   lastReadElement = readable;
@@ -1256,15 +1256,27 @@ function handleReadElement(e) {
   // Ignora o botão de áudio para não ser repetitivo
   if (readable.id === 'toggle-audio') return;
 
-  // Magia da Acessibilidade: Prioriza atributos ocultos (aria-label)
-  let textToRead = readable.getAttribute('aria-label') || readable.innerText;
+  // Tenta apanhar o texto invisível (aria-label), ou o texto renderizado, ou o texto direto
+  let textToRead = readable.getAttribute('aria-label') || readable.innerText || readable.textContent;
 
-  // Tratamento especial para formulários (Lê o Título do campo + o Placeholder ou Valor)
+  // Tratamento especial para formulários
   if (readable.tagName === 'INPUT') {
      const labelText = readable.closest('.form-group')?.querySelector('.field-label')?.innerText || '';
      const valueText = readable.value || readable.getAttribute('placeholder') || '';
      textToRead = `${labelText}. ${valueText}`;
   }
+
+  // Envia para o motor falar apenas se houver texto válido
+  if (textToRead && textToRead.trim() !== '') {
+    
+    // 2. MAGIA ANTI-SPAM (Debounce): 
+    // Evita que o navegador bloqueie a voz se o utilizador mover o rato muito rápido
+    clearTimeout(window.readTimeout);
+    window.readTimeout = setTimeout(() => {
+      speakText(textToRead.trim());
+    }, 150); // Aguarda 150 milissegundos (o rato tem de "parar" no texto para ele ler)
+  }
+
 
   // Envia para o motor falar
   if (textToRead && textToRead.trim() !== '') {
