@@ -1241,51 +1241,57 @@ function speakText(text) {
   window.speechSynthesis.speak(utterance);
 }
 
-/// O CÉREBRO DO LEITOR: Decide o que ler e quando ler
+// O CÉREBRO DO LEITOR: Decide o que ler e quando ler
 function handleReadElement(e) {
   if (!state.audioEnabled) return;
 
-  // 1. ALARGÁMOS O FILTRO: Agora apanha spans, listas (li), legendas e botões do calendário
-  const readable = e.target.closest('h1, h2, h3, p, button, a, input, label, li, span, legend, .unit-card, .calendar-day, .time-btn');
+  // 1. PRIORIDADE: Primeiro tenta encontrar se o rato está dentro de um Botão, Link ou Input
+  let readable = e.target.closest('button, a, input, label');
 
-  // Se não tem texto ou é o mesmo elemento de antes, ignora para não repetir
+  // 2. Se não for interativo, procura pelos textos normais na página
+  if (!readable) {
+    readable = e.target.closest('h1, h2, h3, p, li, span, legend, .unit-card, .calendar-day, .time-btn');
+  }
+
   if (!readable || readable === lastReadElement) return;
-
   lastReadElement = readable;
 
-  // Ignora o botão de áudio para não ser repetitivo
+  // Ignora o próprio botão de áudio para não fazer loop
   if (readable.id === 'toggle-audio') return;
 
-  // Tenta apanhar o texto invisível (aria-label), ou o texto renderizado, ou o texto direto
-  let textToRead = readable.getAttribute('aria-label') || readable.innerText || readable.textContent;
+  // 3. LIMPEZA DE EMOJIS E ÍCONES (Simulação da Árvore de Acessibilidade):
+  // Primeiro tenta ler o texto oculto programado no aria-label
+  let textToRead = readable.getAttribute('aria-label');
 
-  // Tratamento especial para formulários
+  if (!textToRead) {
+    // Se não tem aria-label, criamos um clone invisível do botão/texto
+    const clone = readable.cloneNode(true);
+    
+    // Encontramos todos os emojis/ícones (aria-hidden="true") e apagamo-los do clone
+    const hiddenElements = clone.querySelectorAll('[aria-hidden="true"]');
+    hiddenElements.forEach(el => el.remove());
+    
+    // Agora capturamos o texto limpo, apenas com o que interessa
+    textToRead = clone.innerText || clone.textContent;
+  }
+
+  // 4. Tratamento especial para formulários
   if (readable.tagName === 'INPUT') {
      const labelText = readable.closest('.form-group')?.querySelector('.field-label')?.innerText || '';
      const valueText = readable.value ? `Valor atual: ${readable.value}` : (readable.getAttribute('placeholder') || '');
      
-     // Traduz o aviso inicial do campo
      const introMsg = state.lang === 'pt' ? 'Campo de digitação:' : 
                       state.lang === 'es' ? 'Campo de texto:' : 'Input field:';
                       
      textToRead = `${introMsg} ${labelText}. ${valueText}`;
   }
 
-  // Envia para o motor falar apenas se houver texto válido
+  // Envia para a voz
   if (textToRead && textToRead.trim() !== '') {
-    
-    // 2. MAGIA ANTI-SPAM (Debounce): 
-    // Evita que o navegador bloqueie a voz se o utilizador mover o rato muito rápido
     clearTimeout(window.readTimeout);
     window.readTimeout = setTimeout(() => {
       speakText(textToRead.trim());
-    }, 150); // Aguarda 150 milissegundos (o rato tem de "parar" no texto para ele ler)
-  }
-
-
-  // Envia para o motor falar
-  if (textToRead && textToRead.trim() !== '') {
-    speakText(textToRead.trim());
+    }, 150);
   }
 }
 
