@@ -224,6 +224,101 @@ const TRANSLATIONS = {
     // Calendar
     'months': 'January,February,March,April,May,June,July,August,September,October,November,December',
     'weekdays.short': 'Sun,Mon,Tue,Wed,Thu,Fri,Sat',
+  },
+  
+  es:{
+    'page.title':       'AgendaSalud — Programación de Citas',
+    'brand.name':       'AgendaSalud',
+    'skip.link':        'Saltar al contenido principal',
+    'footer.text':      'Sistema de Programación — Datos ficticios con fines académicos.',
+    'btn.next':         'Continuar',
+    'btn.back':         'Volver',
+    'btn.confirm':      'Confirmar cita',
+    'theme.dark':       'Modo oscuro',
+    'theme.light':      'Modo claro',
+
+    'step.1': 'Unidad', 'step.2': 'Especialidad', 'step.3': 'Fecha y Hora', 'step.4': 'Datos', 'step.5': 'Confirmación',
+    
+    'step1.title':              'Seleccione la unidad de salud',
+    'step1.desc':               'Elija la UPA o centro de salud más cercano.',
+    'step1.search.label':       'Buscar por barrio o código postal',
+    'step1.search.placeholder': 'Ej: Centro, Jardín, 88000-000',
+    'step1.search.hint':        'Escriba al menos 2 caracteres para filtrar.',
+    'error.select.unit':        'Seleccione una unidad para continuar.',
+    'unit.selected':            'Seleccionada',
+    'unit.km':                  'km de distancia',
+
+    'step2.title':            'Elija la especialidad',
+    'step2.desc':             'Seleccione la especialidad médica que necesita.',
+    'step2.legend':           'Especialidades disponibles',
+    'error.select.specialty': 'Seleccione una especialidad para continuar.',
+    'specialty.selected':     'Seleccionada',
+
+    'step3.title':         'Elija fecha y hora',
+    'step3.desc':          'Primero seleccione una fecha disponible y luego un horario.',
+    'step3.times.title':   'Horarios disponibles',
+    'step3.times.legend':  'Seleccione un horario',
+    'calendar.prev':       'Mes anterior',
+    'calendar.next':       'Próximo mes',
+    'error.select.datetime': 'Seleccione una fecha y hora para continuar.',
+    'time.available':      'Disponible',
+    'time.unavailable':    'Ocupado',
+    'day.available.aria':  'disponible',
+    'day.unavailable.aria':'sin turnos',
+    'selected.date.label': 'Horarios para',
+
+    'step4.title':              'Sus datos',
+    'step4.desc':               'Ingrese sus datos para registrar la cita.',
+    'form.name.label':          'Nombre completo',
+    'form.name.placeholder':    'Ej: Maria da Silva',
+    'form.cpf.label':           'CPF',
+    'form.cpf.placeholder':     '000.000.000-00',
+    'form.cpf.hint':            'Escriba solo números — la máscara se aplica automáticamente.',
+    'form.birth.label':         'Fecha de nacimiento',
+    'form.phone.label':         'Teléfono',
+    'form.phone.placeholder':   '(00) 00000-0000',
+    'form.email.label':         'Correo electrónico',
+    'form.email.placeholder':   'ejemplo@email.com',
+    'form.required':            '(obligatorio)',
+    'form.optional':            '(opcional)',
+    'form.required.note':       'Campos obligatorios',
+    'error.name.required':      'Ingrese su nombre completo.',
+    'error.name.short':         'El nombre debe tener al menos 3 caracteres.',
+    'error.cpf.required':       'Ingrese su CPF.',
+    'error.cpf.invalid':        'CPF inválido — verifique los dígitos ingresados.',
+    'error.birth.required':     'Ingrese su fecha de nacimiento.',
+    'error.birth.future':       'La fecha de nacimiento no puede ser en el futuro.',
+    'error.phone.required':     'Ingrese su teléfono.',
+    'error.phone.invalid':      'Teléfono inválido — verifique el número ingresado.',
+    'error.email.invalid':      'Correo inválido — verifique la dirección.',
+
+    'step5.review.title': 'Revise su cita',
+    'step5.review.desc':  'Confirme la información antes de finalizar.',
+    'review.unit':        'Unidad de salud',
+    'review.specialty':   'Especialidad',
+    'review.date':        'Fecha',
+    'review.time':        'Horario',
+    'review.name':        'Nombre',
+    'review.cpf':         'CPF',
+    'review.birth':       'Fecha de nacimiento',
+    'review.phone':       'Teléfono',
+
+    'receipt.title':            '¡Cita confirmada!',
+    'receipt.subtitle':         'Su atención ha sido programada con éxito.',
+    'receipt.protocol.label':   'Número de protocolo',
+    'receipt.copy.btn':         'Copiar protocolo',
+    'receipt.copy.aria':        'Copiar número de protocolo',
+    'receipt.copy.success':     '¡Protocolo copiado!',
+    'receipt.print.btn':        'Imprimir comprobante',
+    'receipt.new.btn':          'Nueva cita',
+    'receipt.instructions.title': 'Próximos pasos',
+    'receipt.instructions.1':   'Llegue con 15 minutos de anticipación.',
+    'receipt.instructions.2':   'Lleve un documento con foto y su tarjeta SUS.',
+    'receipt.instructions.3':   'Recibirá una confirmación en el teléfono proporcionado.',
+    'receipt.confirmed.announce': '¡Cita confirmada con éxito!',
+
+    'months': 'Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre',
+    'weekdays.short': 'Dom,Lun,Mar,Mié,Jue,Vie,Sáb',
   }
 };
 
@@ -377,15 +472,18 @@ function goToStep(targetStep) {
   // Atualiza estado
   state.currentStep = targetStep;
 
-  // Mostra nova etapa
+  /// Mostra nova etapa
   const nextEl = document.getElementById(`step-${targetStep}`);
   if (nextEl) {
     nextEl.hidden = false;
     nextEl.classList.add('step--active');
 
-    // Foco no conteúdo principal — essencial para leitores de tela
-    const mainContent = document.getElementById('main-content');
-    mainContent.focus();
+    // MUDANÇA PARA O 10: Foca diretamente no título da etapa
+    const stepTitle = nextEl.querySelector('h1');
+    if (stepTitle) {
+      stepTitle.setAttribute('tabindex', '-1'); // Permite que o h1 receba foco via JS
+      stepTitle.focus();
+    }
   }
 
   // Ações especiais ao entrar em cada etapa
