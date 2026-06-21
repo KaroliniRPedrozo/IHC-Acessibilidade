@@ -357,6 +357,7 @@ const UNAVAILABLE_DAYS = [3, 7, 14, 20, 21, 27, 28];
 const state = {
   currentStep: 1,
   lang: 'pt',
+  audioEnabled: false,
   selectedUnit: null,
   selectedSpecialty: null,
   selectedDate: null,
@@ -449,8 +450,13 @@ function setLanguage(lang) {
 function announce(message) {
   const region = document.getElementById('live-region');
   region.textContent = '';
-  // Forçar re-render para garantir que o leitor de tela capte a mudança
-  setTimeout(() => { region.textContent = message; }, 50);
+  // Forçar re-render
+  setTimeout(() => { 
+    region.textContent = message; 
+    
+    // NOVO: Chama o motor de voz passando a mensagem
+    speakText(message);
+  }, 50);
 }
 
 // ============================================================
@@ -1191,3 +1197,45 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tradução inicial
   setLanguage('pt');
 });
+// ============================================================
+// MOTOR DE LEITURA DE TELA (WEB SPEECH API)
+// ============================================================
+function toggleAudio() {
+  state.audioEnabled = !state.audioEnabled;
+  const btn = document.getElementById('toggle-audio');
+  const icon = document.getElementById('audio-icon');
+  
+  btn.setAttribute('aria-pressed', state.audioEnabled);
+
+  if (state.audioEnabled) {
+    icon.textContent = '🔊';
+    // Mensagem de boas-vindas ao ativar
+    const msg = state.lang === 'pt' ? 'Áudio ativado' : 
+                state.lang === 'es' ? 'Audio activado' : 'Audio enabled';
+    speakText(msg);
+  } else {
+    icon.textContent = '🔇';
+    window.speechSynthesis.cancel(); // Para de falar imediatamente
+  }
+}
+
+function speakText(text) {
+  // Só fala se o botão estiver ativado e se o navegador suportar
+  if (!state.audioEnabled || !('speechSynthesis' in window)) return;
+
+  // Cancela a fala anterior para não embolar as vozes
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  // Troca o sotaque e idioma da voz de acordo com o sistema
+  if (state.lang === 'pt') utterance.lang = 'pt-BR';
+  else if (state.lang === 'en') utterance.lang = 'en-US';
+  else if (state.lang === 'es') utterance.lang = 'es-ES';
+
+  // Ajustes de ergonomia cognitiva: fala levemente mais devagar para idosos
+  utterance.rate = 0.9; 
+  utterance.pitch = 1.0;
+
+  window.speechSynthesis.speak(utterance);
+}

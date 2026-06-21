@@ -21,6 +21,10 @@
         <span class="brand-name" data-i18n="brand.name">AgendaSaúde</span>
       </div>
       <nav class="header-controls" aria-label="Controles da interface">
+        <button id="toggle-audio" class="theme-btn" aria-pressed="false" aria-label="Ativar leitura em áudio" title="Ativar áudio" onclick="toggleAudio()">
+          <span aria-hidden="true" id="audio-icon">🔇</span>
+          <span class="sr-only" id="audio-label">Ativar leitura em áudio</span>
+        </button>
         <button id="toggle-dark-mode" class="theme-btn" aria-pressed="false" aria-label="Ativar modo escuro" title="Modo escuro" onclick="toggleDarkMode()">
           <span aria-hidden="true">🌙</span>
           <span class="sr-only" id="dark-mode-label">Ativar modo escuro</span>
