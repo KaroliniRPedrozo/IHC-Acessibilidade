@@ -376,78 +376,66 @@ function t(key) {
 }
 
 function setLanguage(lang) {
+  // 1. BLINDAGEM: Garante que a sigla é minúscula e válida, senão força o 'en'
+  lang = (lang || 'en').toLowerCase().trim();
+  
   if (lang === state.lang) return;
   state.lang = lang;
 
-  // 1. Atualiza atributo lang do documento (WCAG 3.1.1)
+  // 2. Atualiza a marcação acessível principal (WCAG 3.1.1)
   if (lang === 'pt') document.documentElement.lang = 'pt-BR';
   else if (lang === 'es') document.documentElement.lang = 'es';
   else document.documentElement.lang = 'en';
 
   document.title = t('page.title');
 
-  // 2. Atualiza botões de idioma e rótulos do Leitor de Tela
+  // 3. Atualiza os botões de idioma e os textos do Leitor de Ecrã
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    const isActive = btn.dataset.lang === lang;
+    const btnLang = btn.dataset.lang.toLowerCase();
+    const isActive = (btnLang === lang);
+    
     btn.classList.toggle('lang-btn--active', isActive);
     btn.setAttribute('aria-pressed', String(isActive));
     
-    // Atualiza texto de leitura para leitores de tela (CORRIGIDO PARA 3 IDIOMAS)
     const srSpan = btn.querySelector('.sr-only');
     if (srSpan) {
-      const btnLang = btn.dataset.lang;
       if (btnLang === 'pt') {
         srSpan.textContent = isActive ? ' — Português (ativo)' : ' — Português';
-      } else if (btnLang === 'en') {
-        srSpan.textContent = isActive ? ' — English (active)' : ' — English';
       } else if (btnLang === 'es') {
         srSpan.textContent = isActive ? ' — Español (activo)' : ' — Español';
+      } else {
+        srSpan.textContent = isActive ? ' — English (active)' : ' — English';
       }
     }
   });
 
-  // Percorre todos os elementos com data-i18n e atualiza
+  // 4. Traduz todos os textos dinâmicos na interface
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    el.textContent = t(key);
+    el.textContent = t(el.dataset.i18n);
   });
-
-  // Atualiza placeholders
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     el.placeholder = t(el.dataset.i18nPlaceholder);
   });
-
-  // Atualiza aria-labels com chave i18n
   document.querySelectorAll('[data-i18n-aria]').forEach(el => {
     el.setAttribute('aria-label', t(el.dataset.i18nAria));
   });
 
-  // Atualiza label do botão de dark mode
+  // 5. Atualiza o botão de Modo Escuro
   const isDarkMode = document.documentElement.classList.contains('dark-mode');
   const label = document.getElementById('dark-mode-label');
-  const btn = document.getElementById('toggle-dark-mode');
-  if (label) {
-    const themeKey = isDarkMode ? 'theme.light' : 'theme.dark';
-    label.textContent = t(themeKey);
-  }
-  if (btn) {
-    const themeKey = isDarkMode ? 'theme.light' : 'theme.dark';
-    btn.title = t(themeKey);
-  }
+  const themeBtn = document.getElementById('toggle-dark-mode');
+  if (label) label.textContent = t(isDarkMode ? 'theme.light' : 'theme.dark');
+  if (themeBtn) themeBtn.title = t(isDarkMode ? 'theme.light' : 'theme.dark');
 
-  // Re-renderiza componentes dinâmicos
-  renderUnitList(document.getElementById('search-unit').value);
+  // 6. Atualiza as listas geradas por JavaScript
+  const searchInput = document.getElementById('search-unit');
+  if (searchInput) renderUnitList(searchInput.value);
   renderSpecialtyList();
   renderCalendar();
   if (state.selectedDate) renderTimeSlots(state.selectedDate);
-  if (state.currentStep === 5) {
-    const reviewEl = document.getElementById('review-list');
-    if (reviewEl && !document.getElementById('receipt-view').hidden) {
-      renderReview();
-    }
-  }
+  if (state.currentStep === 5) renderReview();
 
-  // 3. Anuncia mudança de idioma (CORRIGIDO PARA 3 IDIOMAS)
+  // 7. CORREÇÃO DA VOZ: Anuncia a troca no idioma correto!
   let announceMsg = 'Language changed to English';
   if (lang === 'pt') announceMsg = 'Idioma alterado para Português';
   if (lang === 'es') announceMsg = 'Idioma cambiado a Español';
