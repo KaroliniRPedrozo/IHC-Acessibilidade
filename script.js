@@ -1289,6 +1289,26 @@ function handleReadElement(e) {
   }
 }
 
+// Ouve a digitação em tempo real (Typing Echo)
+function handleTyping(e) {
+  if (!state.audioEnabled) return;
+
+  if (e.target.tagName === 'INPUT') {
+    // e.data captura exatamente a última letra digitada
+    const char = e.data;
+
+    if (char) {
+      speakText(char); // Fala a letra que acabou de ser digitada
+    } 
+    // Se o usuário apertar Backspace (apagar)
+    else if (e.inputType === 'deleteContentBackward') {
+      const apagadoMsg = state.lang === 'pt' ? 'Apagado' : 
+                         state.lang === 'es' ? 'Borrado' : 'Deleted';
+      speakText(apagadoMsg);
+    }
+  }
+}
+
 // Liga os sensores
 function initAudioReader() {
   document.addEventListener('focusin', handleReadElement);   // Detecta navegação por teclado (Tab)
