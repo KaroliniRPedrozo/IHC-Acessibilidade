@@ -1309,15 +1309,17 @@ function handleTyping(e) {
   }
 }
 
-// Liga os sensores
+/// Liga os sensores
 function initAudioReader() {
-  document.addEventListener('focusin', handleReadElement);   // Detecta navegação por teclado (Tab)
-  document.addEventListener('mouseover', handleReadElement); // Detecta navegação por mouse
+  document.addEventListener('focusin', handleReadElement);   // Teclado (Tab)
+  document.addEventListener('mouseover', handleReadElement); // Mouseover
+  document.addEventListener('input', handleTyping);          // NOVO: Sensor de digitação
 }
 
 // Desliga os sensores
 function removeAudioReader() {
   document.removeEventListener('focusin', handleReadElement);
   document.removeEventListener('mouseover', handleReadElement);
+  document.removeEventListener('input', handleTyping);       // NOVO: Desliga o sensor de digitação
   lastReadElement = null;
 }
