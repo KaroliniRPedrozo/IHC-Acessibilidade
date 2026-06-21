@@ -1262,8 +1262,13 @@ function handleReadElement(e) {
   // Tratamento especial para formulários
   if (readable.tagName === 'INPUT') {
      const labelText = readable.closest('.form-group')?.querySelector('.field-label')?.innerText || '';
-     const valueText = readable.value || readable.getAttribute('placeholder') || '';
-     textToRead = `${labelText}. ${valueText}`;
+     const valueText = readable.value ? `Valor atual: ${readable.value}` : (readable.getAttribute('placeholder') || '');
+     
+     // Traduz o aviso inicial do campo
+     const introMsg = state.lang === 'pt' ? 'Campo de digitação:' : 
+                      state.lang === 'es' ? 'Campo de texto:' : 'Input field:';
+                      
+     textToRead = `${introMsg} ${labelText}. ${valueText}`;
   }
 
   // Envia para o motor falar apenas se houver texto válido
