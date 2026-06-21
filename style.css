@@ -313,11 +313,22 @@ body {
   transform: scale(0.95);
 }
 
+/* Correção total do Modo Escuro */
 html.dark-mode #toggle-dark-mode::before {
   content: '☀️';
   position: absolute;
+  /* Garante que o ícone fica centralizado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Oculta o ícone da lua quando estiver no Modo Escuro */
+html.dark-mode #toggle-dark-mode span[aria-hidden="true"] {
+  display: none;
+}
+
+/* Garante que o botão do modo escuro não tente aplicar transformações no botão de áudio */
 html.dark-mode #toggle-dark-mode {
   transform: none;
 }
