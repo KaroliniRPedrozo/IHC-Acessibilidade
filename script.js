@@ -379,22 +379,29 @@ function setLanguage(lang) {
   if (lang === state.lang) return;
   state.lang = lang;
 
-  // Atualiza atributo lang do documento (WCAG 3.1.1)
-  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  // 1. Atualiza atributo lang do documento (WCAG 3.1.1)
+  if (lang === 'pt') document.documentElement.lang = 'pt-BR';
+  else if (lang === 'es') document.documentElement.lang = 'es';
+  else document.documentElement.lang = 'en';
+
   document.title = t('page.title');
 
-  // Atualiza botões de idioma
+  // 2. Atualiza botões de idioma e rótulos do Leitor de Tela
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const isActive = btn.dataset.lang === lang;
     btn.classList.toggle('lang-btn--active', isActive);
     btn.setAttribute('aria-pressed', String(isActive));
-    // Atualiza texto de leitura para leitores de tela
+    
+    // Atualiza texto de leitura para leitores de tela (CORRIGIDO PARA 3 IDIOMAS)
     const srSpan = btn.querySelector('.sr-only');
     if (srSpan) {
-      if (lang === 'pt') {
-        srSpan.textContent = btn.dataset.lang === 'pt' ? ' — Português (ativo)' : ' — English';
-      } else {
-        srSpan.textContent = btn.dataset.lang === 'en' ? ' — English (active)' : ' — Português';
+      const btnLang = btn.dataset.lang;
+      if (btnLang === 'pt') {
+        srSpan.textContent = isActive ? ' — Português (ativo)' : ' — Português';
+      } else if (btnLang === 'en') {
+        srSpan.textContent = isActive ? ' — English (active)' : ' — English';
+      } else if (btnLang === 'es') {
+        srSpan.textContent = isActive ? ' — Español (activo)' : ' — Español';
       }
     }
   });
@@ -440,8 +447,12 @@ function setLanguage(lang) {
     }
   }
 
-  // Anuncia mudança de idioma para leitores de tela
-  announce(lang === 'pt' ? 'Idioma alterado para Português' : 'Language changed to English');
+  // 3. Anuncia mudança de idioma (CORRIGIDO PARA 3 IDIOMAS)
+  let announceMsg = 'Language changed to English';
+  if (lang === 'pt') announceMsg = 'Idioma alterado para Português';
+  if (lang === 'es') announceMsg = 'Idioma cambiado a Español';
+  
+  announce(announceMsg);
 }
 
 // ============================================================
@@ -1127,7 +1138,11 @@ function applyDarkMode(isDarkMode) {
 
 function getCurrentLanguage() {
   const btnPt = document.getElementById('lang-pt');
-  return btnPt?.classList.contains('lang-btn--active') ? 'pt' : 'en';
+  const btnEs = document.getElementById('lang-es');
+  
+  if (btnPt?.classList.contains('lang-btn--active')) return 'pt';
+  if (btnEs?.classList.contains('lang-btn--active')) return 'es';
+  return 'en';
 }
 
 // ============================================================
