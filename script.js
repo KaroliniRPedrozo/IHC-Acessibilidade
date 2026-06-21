@@ -1259,23 +1259,9 @@ function handleReadElement(e) {
   // Ignora o próprio botão de áudio para não fazer loop
   if (readable.id === 'toggle-audio') return;
 
-  // 3. LIMPEZA DE EMOJIS E ÍCONES (Simulação da Árvore de Acessibilidade):
-  // Primeiro tenta ler o texto oculto programado no aria-label
-  let textToRead = readable.getAttribute('aria-label');
+  let textToRead = '';
 
-  if (!textToRead) {
-    // Se não tem aria-label, criamos um clone invisível do botão/texto
-    const clone = readable.cloneNode(true);
-    
-    // Encontramos todos os emojis/ícones (aria-hidden="true") e apagamo-los do clone
-    const hiddenElements = clone.querySelectorAll('[aria-hidden="true"]');
-    hiddenElements.forEach(el => el.remove());
-    
-    // Agora capturamos o texto limpo, apenas com o que interessa
-    textToRead = clone.innerText || clone.textContent;
-  }
-
-  // 4. Tratamento especial para formulários
+  // 3. Tratamento especial para formulários
   if (readable.tagName === 'INPUT') {
      const labelText = readable.closest('.form-group')?.querySelector('.field-label')?.innerText || '';
      const valueText = readable.value ? `Valor atual: ${readable.value}` : (readable.getAttribute('placeholder') || '');
@@ -1284,13 +1270,45 @@ function handleReadElement(e) {
                       state.lang === 'es' ? 'Campo de texto:' : 'Input field:';
                       
      textToRead = `${introMsg} ${labelText}. ${valueText}`;
+  } 
+  else {
+    // 4. ESTRATÉGIA BLINDADA (Ordem de prioridade para não ler emojis)
+    
+    // A) Procura por texto visível APENAS para leitores de tela (classe .sr-only)
+    const srOnlyElement = readable.querySelector('.sr-only');
+    
+    if (srOnlyElement && srOnlyElement.textContent.trim() !== '') {
+      textToRead = srOnlyElement.textContent;
+    } 
+    // B) Tenta o atributo title (tooltip, que nós atualizamos dinamicamente no Modo Escuro)
+    else if (readable.getAttribute('title')) {
+      textToRead = readable.getAttribute('title');
+    }
+    // C) Tenta o aria-label
+    else if (readable.getAttribute('aria-label')) {
+      textToRead = readable.getAttribute('aria-label');
+    } 
+    // D) Se nada disso existir, pega o texto puro da tela
+    else {
+      const clone = readable.cloneNode(true);
+      const hiddenElements = clone.querySelectorAll('[aria-hidden="true"]');
+      hiddenElements.forEach(el => el.remove());
+      
+      textToRead = clone.innerText || clone.textContent;
+    }
+  }
+
+  // 5. FILTRO ABSOLUTO: Remove qualquer emoji que tenha sobrado usando Regex
+  // A tag \p{Extended_Pictographic} garante que ele apaga emojis (☀️, 🌙) mas preserva letras e números
+  if (textToRead) {
+    textToRead = textToRead.replace(/\p{Extended_Pictographic}/gu, '').trim();
   }
 
   // Envia para a voz
-  if (textToRead && textToRead.trim() !== '') {
+  if (textToRead && textToRead !== '') {
     clearTimeout(window.readTimeout);
     window.readTimeout = setTimeout(() => {
-      speakText(textToRead.trim());
+      speakText(textToRead);
     }, 150);
   }
 }
