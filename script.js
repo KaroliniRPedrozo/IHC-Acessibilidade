@@ -8,11 +8,9 @@
 
 // ============================================================
 // DICIONÁRIO DE TRADUÇÕES (i18n)
-// Todas as strings da interface — zero hardcoded no HTML
 // ============================================================
 const TRANSLATIONS = {
   pt: {
-    // Globais
     'page.title':       'AgendaSaúde — Agendamento de Consulta',
     'brand.name':       'AgendaSaúde',
     'skip.link':        'Ir para o conteúdo principal',
@@ -23,14 +21,12 @@ const TRANSLATIONS = {
     'theme.dark':       'Modo escuro',
     'theme.light':      'Modo claro',
 
-    // Stepper
     'step.1': 'Unidade',
     'step.2': 'Especialidade',
     'step.3': 'Data e Hora',
     'step.4': 'Dados',
     'step.5': 'Confirmação',
 
-    // Etapa 1
     'step1.title':              'Selecione a unidade de saúde',
     'step1.desc':               'Escolha a UPA ou posto de saúde mais próximo de você.',
     'step1.search.label':       'Buscar por bairro ou CEP',
@@ -40,14 +36,12 @@ const TRANSLATIONS = {
     'unit.selected':            'Selecionada',
     'unit.km':                  'km de distância',
 
-    // Etapa 2
-    'step2.title':          'Escolha a especialidade',
-    'step2.desc':           'Selecione a especialidade médica que deseja.',
-    'step2.legend':         'Especialidades disponíveis',
+    'step2.title':            'Escolha a especialidade',
+    'step2.desc':             'Selecione a especialidade médica que deseja.',
+    'step2.legend':           'Especialidades disponíveis',
     'error.select.specialty': 'Selecione uma especialidade para continuar.',
-    'specialty.selected':   'Selecionada',
+    'specialty.selected':     'Selecionada',
 
-    // Etapa 3
     'step3.title':         'Escolha data e horário',
     'step3.desc':          'Selecione primeiro uma data disponível e depois um horário.',
     'step3.times.title':   'Horários disponíveis',
@@ -61,7 +55,6 @@ const TRANSLATIONS = {
     'day.unavailable.aria':'sem vagas',
     'selected.date.label': 'Horários para',
 
-    // Etapa 4
     'step4.title':              'Seus dados',
     'step4.desc':               'Informe seus dados para registrar o agendamento.',
     'form.name.label':          'Nome completo',
@@ -87,7 +80,6 @@ const TRANSLATIONS = {
     'error.phone.invalid':      'Telefone inválido — verifique o número informado.',
     'error.email.invalid':      'E-mail inválido — verifique o endereço informado.',
 
-    // Etapa 5 — Revisão
     'step5.review.title': 'Revise seu agendamento',
     'step5.review.desc':  'Confirme as informações antes de finalizar.',
     'review.unit':        'Unidade de saúde',
@@ -99,27 +91,25 @@ const TRANSLATIONS = {
     'review.birth':       'Data de nascimento',
     'review.phone':       'Telefone',
 
-    // Comprovante
-    'receipt.title':            'Agendamento confirmado!',
-    'receipt.subtitle':         'Seu atendimento está agendado com sucesso.',
-    'receipt.protocol.label':   'Número do protocolo',
-    'receipt.copy.btn':         'Copiar protocolo',
-    'receipt.copy.aria':        'Copiar número do protocolo',
-    'receipt.copy.success':     'Protocolo copiado!',
-    'receipt.print.btn':        'Imprimir comprovante',
-    'receipt.new.btn':          'Novo agendamento',
+    'receipt.title':              'Agendamento confirmado!',
+    'receipt.subtitle':           'Seu atendimento está agendado com sucesso.',
+    'receipt.protocol.label':     'Número do protocolo',
+    'receipt.copy.btn':           'Copiar protocolo',
+    'receipt.copy.aria':          'Copiar número do protocolo',
+    'receipt.copy.success':       'Protocolo copiado!',
+    'receipt.print.btn':          'Imprimir comprovante',
+    'receipt.new.btn':            'Novo agendamento',
     'receipt.instructions.title': 'Próximos passos',
-    'receipt.instructions.1':   'Chegue com 15 minutos de antecedência.',
-    'receipt.instructions.2':   'Leve um documento com foto e o cartão SUS.',
-    'receipt.instructions.3':   'Você receberá uma confirmação no telefone informado.',
+    'receipt.instructions.1':     'Chegue com 15 minutos de antecedência.',
+    'receipt.instructions.2':     'Leve um documento com foto e o cartão SUS.',
+    'receipt.instructions.3':     'Você receberá uma confirmação no telefone informado.',
     'receipt.confirmed.announce': 'Agendamento confirmado com sucesso!',
 
-    // Calendário
-    'months': 'Janeiro,Fevereiro,Março,Abril,Maio,Junho,Julho,Agosto,Setembro,Outubro,Novembro,Dezembro',
-    'weekdays.short': 'Dom,Seg,Ter,Qua,Qui,Sex,Sáb',
+    'months':        'Janeiro,Fevereiro,Março,Abril,Maio,Junho,Julho,Agosto,Setembro,Outubro,Novembro,Dezembro',
+    'weekdays.short':'Dom,Seg,Ter,Qua,Qui,Sex,Sáb',
   },
+
   en: {
-    // Globals
     'page.title':       'HealthScheduler — Appointment Booking',
     'brand.name':       'HealthScheduler',
     'skip.link':        'Skip to main content',
@@ -130,14 +120,12 @@ const TRANSLATIONS = {
     'theme.dark':       'Dark mode',
     'theme.light':      'Light mode',
 
-    // Stepper
     'step.1': 'Location',
     'step.2': 'Specialty',
     'step.3': 'Date & Time',
     'step.4': 'Details',
     'step.5': 'Confirm',
 
-    // Step 1
     'step1.title':              'Select a health unit',
     'step1.desc':               'Choose the UPA or health center closest to you.',
     'step1.search.label':       'Search by neighborhood or ZIP code',
@@ -147,14 +135,12 @@ const TRANSLATIONS = {
     'unit.selected':            'Selected',
     'unit.km':                  'km away',
 
-    // Step 2
     'step2.title':            'Choose a specialty',
     'step2.desc':             'Select the medical specialty you need.',
     'step2.legend':           'Available specialties',
     'error.select.specialty': 'Please select a specialty to continue.',
     'specialty.selected':     'Selected',
 
-    // Step 3
     'step3.title':         'Choose date and time',
     'step3.desc':          'First select an available date, then a time slot.',
     'step3.times.title':   'Available times',
@@ -168,7 +154,6 @@ const TRANSLATIONS = {
     'day.unavailable.aria':'no slots',
     'selected.date.label': 'Times for',
 
-    // Step 4
     'step4.title':              'Your information',
     'step4.desc':               'Enter your details to register the appointment.',
     'form.name.label':          'Full name',
@@ -194,7 +179,6 @@ const TRANSLATIONS = {
     'error.phone.invalid':      'Invalid phone number — please check the number entered.',
     'error.email.invalid':      'Invalid email address — please check the address entered.',
 
-    // Step 5 — Review
     'step5.review.title': 'Review your appointment',
     'step5.review.desc':  'Please confirm your information before finalizing.',
     'review.unit':        'Health unit',
@@ -206,27 +190,25 @@ const TRANSLATIONS = {
     'review.birth':       'Date of birth',
     'review.phone':       'Phone',
 
-    // Receipt
-    'receipt.title':            'Appointment confirmed!',
-    'receipt.subtitle':         'Your appointment has been successfully scheduled.',
-    'receipt.protocol.label':   'Protocol number',
-    'receipt.copy.btn':         'Copy protocol',
-    'receipt.copy.aria':        'Copy protocol number',
-    'receipt.copy.success':     'Protocol copied!',
-    'receipt.print.btn':        'Print receipt',
-    'receipt.new.btn':          'New appointment',
+    'receipt.title':              'Appointment confirmed!',
+    'receipt.subtitle':           'Your appointment has been successfully scheduled.',
+    'receipt.protocol.label':     'Protocol number',
+    'receipt.copy.btn':           'Copy protocol',
+    'receipt.copy.aria':          'Copy protocol number',
+    'receipt.copy.success':       'Protocol copied!',
+    'receipt.print.btn':          'Print receipt',
+    'receipt.new.btn':            'New appointment',
     'receipt.instructions.title': 'Next steps',
-    'receipt.instructions.1':   'Arrive 15 minutes before your appointment.',
-    'receipt.instructions.2':   'Bring a photo ID and your SUS card.',
-    'receipt.instructions.3':   'You will receive a confirmation on the phone provided.',
+    'receipt.instructions.1':     'Arrive 15 minutes before your appointment.',
+    'receipt.instructions.2':     'Bring a photo ID and your SUS card.',
+    'receipt.instructions.3':     'You will receive a confirmation on the phone provided.',
     'receipt.confirmed.announce': 'Appointment successfully confirmed!',
 
-    // Calendar
-    'months': 'January,February,March,April,May,June,July,August,September,October,November,December',
-    'weekdays.short': 'Sun,Mon,Tue,Wed,Thu,Fri,Sat',
+    'months':        'January,February,March,April,May,June,July,August,September,October,November,December',
+    'weekdays.short':'Sun,Mon,Tue,Wed,Thu,Fri,Sat',
   },
-  
-  es:{
+
+  es: {
     'page.title':       'AgendaSalud — Programación de Citas',
     'brand.name':       'AgendaSalud',
     'skip.link':        'Saltar al contenido principal',
@@ -237,8 +219,12 @@ const TRANSLATIONS = {
     'theme.dark':       'Modo oscuro',
     'theme.light':      'Modo claro',
 
-    'step.1': 'Unidad', 'step.2': 'Especialidad', 'step.3': 'Fecha y Hora', 'step.4': 'Datos', 'step.5': 'Confirmación',
-    
+    'step.1': 'Unidad',
+    'step.2': 'Especialidad',
+    'step.3': 'Fecha y Hora',
+    'step.4': 'Datos',
+    'step.5': 'Confirmación',
+
     'step1.title':              'Seleccione la unidad de salud',
     'step1.desc':               'Elija la UPA o centro de salud más cercano.',
     'step1.search.label':       'Buscar por barrio o código postal',
@@ -303,22 +289,22 @@ const TRANSLATIONS = {
     'review.birth':       'Fecha de nacimiento',
     'review.phone':       'Teléfono',
 
-    'receipt.title':            '¡Cita confirmada!',
-    'receipt.subtitle':         'Su atención ha sido programada con éxito.',
-    'receipt.protocol.label':   'Número de protocolo',
-    'receipt.copy.btn':         'Copiar protocolo',
-    'receipt.copy.aria':        'Copiar número de protocolo',
-    'receipt.copy.success':     '¡Protocolo copiado!',
-    'receipt.print.btn':        'Imprimir comprobante',
-    'receipt.new.btn':          'Nueva cita',
+    'receipt.title':              '¡Cita confirmada!',
+    'receipt.subtitle':           'Su atención ha sido programada con éxito.',
+    'receipt.protocol.label':     'Número de protocolo',
+    'receipt.copy.btn':           'Copiar protocolo',
+    'receipt.copy.aria':          'Copiar número de protocolo',
+    'receipt.copy.success':       '¡Protocolo copiado!',
+    'receipt.print.btn':          'Imprimir comprobante',
+    'receipt.new.btn':            'Nueva cita',
     'receipt.instructions.title': 'Próximos pasos',
-    'receipt.instructions.1':   'Llegue con 15 minutos de anticipación.',
-    'receipt.instructions.2':   'Lleve un documento con foto y su tarjeta SUS.',
-    'receipt.instructions.3':   'Recibirá una confirmación en el teléfono proporcionado.',
+    'receipt.instructions.1':     'Llegue con 15 minutos de anticipación.',
+    'receipt.instructions.2':     'Lleve un documento con foto y su tarjeta SUS.',
+    'receipt.instructions.3':     'Recibirá una confirmación en el teléfono proporcionado.',
     'receipt.confirmed.announce': '¡Cita confirmada con éxito!',
 
-    'months': 'Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre',
-    'weekdays.short': 'Dom,Lun,Mar,Mié,Jue,Vie,Sáb',
+    'months':        'Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre',
+    'weekdays.short':'Dom,Lun,Mar,Mié,Jue,Vie,Sáb',
   }
 };
 
@@ -326,90 +312,97 @@ const TRANSLATIONS = {
 // DADOS MOCKADOS
 // ============================================================
 const MOCK_UNITS = [
-  { id: 'upa-centro',   name: 'UPA 24h Centro',          address: 'Rua XV de Novembro, 300 — Centro', distance: 1.2 },
-  { id: 'ups-jardim',   name: 'UPS Jardim das Flores',   address: 'Av. das Palmeiras, 840 — Jardim',  distance: 3.5 },
+  { id: 'upa-centro',   name: 'UPA 24h Centro',          address: 'Rua XV de Novembro, 300 — Centro',    distance: 1.2 },
+  { id: 'ups-jardim',   name: 'UPS Jardim das Flores',   address: 'Av. das Palmeiras, 840 — Jardim',     distance: 3.5 },
   { id: 'upa-norte',    name: 'UPA Norte — Araranguá',   address: 'Rua das Acácias, 120 — Bairro Norte', distance: 4.8 },
-  { id: 'post-litoral', name: 'Posto de Saúde Litoral',  address: 'Estrada do Mar, 670 — Balneário',  distance: 6.1 },
-  { id: 'post-sul',     name: 'Posto de Saúde Sul',      address: 'Rua Esperança, 55 — Bairro Sul',   distance: 7.3 },
+  { id: 'post-litoral', name: 'Posto de Saúde Litoral',  address: 'Estrada do Mar, 670 — Balneário',     distance: 6.1 },
+  { id: 'post-sul',     name: 'Posto de Saúde Sul',      address: 'Rua Esperança, 55 — Bairro Sul',      distance: 7.3 },
 ];
 
+// BUG CORRIGIDO: Adicionado labelEs em todas as especialidades
 const MOCK_SPECIALTIES = [
-  { id: 'clinico',      labelPt: 'Clínico Geral',     labelEn: 'General Practitioner', icon: '🩺' },
-  { id: 'pediatria',    labelPt: 'Pediatria',          labelEn: 'Pediatrics',           icon: '👶' },
-  { id: 'cardiologia',  labelPt: 'Cardiologia',        labelEn: 'Cardiology',           icon: '❤️' },
-  { id: 'ortopedia',    labelPt: 'Ortopedia',          labelEn: 'Orthopedics',          icon: '🦴' },
-  { id: 'ginecologia',  labelPt: 'Ginecologia',        labelEn: 'Gynecology',           icon: '🌸' },
-  { id: 'neurologia',   labelPt: 'Neurologia',         labelEn: 'Neurology',            icon: '🧠' },
+  { id: 'clinico',     labelPt: 'Clínico Geral', labelEn: 'General Practitioner', labelEs: 'Médico General',    icon: '🩺' },
+  { id: 'pediatria',   labelPt: 'Pediatria',     labelEn: 'Pediatrics',           labelEs: 'Pediatría',         icon: '👶' },
+  { id: 'cardiologia', labelPt: 'Cardiologia',   labelEn: 'Cardiology',           labelEs: 'Cardiología',       icon: '❤️' },
+  { id: 'ortopedia',   labelPt: 'Ortopedia',     labelEn: 'Orthopedics',          labelEs: 'Ortopedia',         icon: '🦴' },
+  { id: 'ginecologia', labelPt: 'Ginecologia',   labelEn: 'Gynecology',           labelEs: 'Ginecología',       icon: '🌸' },
+  { id: 'neurologia',  labelPt: 'Neurologia',    labelEn: 'Neurology',            labelEs: 'Neurología',        icon: '🧠' },
 ];
 
-// Horários mockados: true = disponível, false = ocupado
 const MOCK_TIME_SLOTS = {
-  available: ['07:30','08:00','08:30','09:30','10:00','11:00','14:00','14:30','15:30','16:00'],
-  unavailable: ['08:30', '10:30', '11:30', '13:00', '13:30'],
+  available:   ['07:30','08:00','08:30','09:30','10:00','11:00','14:00','14:30','15:30','16:00'],
+  unavailable: ['08:30','10:30','11:30','13:00','13:30'],
 };
 
-// Dias sem vagas no mês atual (índices de dia do mês)
 const UNAVAILABLE_DAYS = [3, 7, 14, 20, 21, 27, 28];
 
 // ============================================================
-// ESTADO GLOBAL DA APLICAÇÃO
+// ESTADO GLOBAL
 // ============================================================
 const state = {
-  currentStep: 1,
-  lang: 'pt',
-  audioEnabled: false,
-  selectedUnit: null,
-  selectedSpecialty: null,
-  selectedDate: null,
-  selectedTime: null,
-  calendarMonth: new Date().getMonth(),
-  calendarYear: new Date().getFullYear(),
-  patientData: {},
-  protocolNumber: null,
+  currentStep:      1,
+  lang:             'pt',
+  audioEnabled:     false,
+  selectedUnit:     null,
+  selectedSpecialty:null,
+  selectedDate:     null,
+  selectedTime:     null,
+  calendarMonth:    new Date().getMonth(),
+  calendarYear:     new Date().getFullYear(),
+  patientData:      {},
+  protocolNumber:   null,
 };
 
 // ============================================================
 // MOTOR i18n
 // ============================================================
 function t(key) {
-  return TRANSLATIONS[state.lang][key] || TRANSLATIONS['pt'][key] || key;
+  return (TRANSLATIONS[state.lang] && TRANSLATIONS[state.lang][key])
+    || TRANSLATIONS['pt'][key]
+    || key;
 }
 
+// Retorna o label da especialidade no idioma atual
+// BUG CORRIGIDO: agora suporta 'es' explicitamente
+function specialtyLabel(spec) {
+  if (state.lang === 'pt') return spec.labelPt;
+  if (state.lang === 'es') return spec.labelEs;
+  return spec.labelEn;
+}
+
+// BUG CORRIGIDO: removido o early-return quando lang === state.lang
+// para que a inicialização (chamada com 'pt' enquanto state.lang já é 'pt')
+// ainda renderize as listas e aplique todas as traduções.
 function setLanguage(lang) {
-  // 1. BLINDAGEM: Garante que a sigla é minúscula e válida, senão força o 'en'
-  lang = (lang || 'en').toLowerCase().trim();
-  
-  if (lang === state.lang) return;
+  if (!lang || typeof lang !== 'string') lang = 'pt';
+  lang = lang.toLowerCase().trim();
+
+  const isInit = (lang === state.lang); // será true apenas na chamada inicial do DOMContentLoaded
   state.lang = lang;
 
-  // 2. Atualiza a marcação acessível principal (WCAG 3.1.1)
-  if (lang === 'pt') document.documentElement.lang = 'pt-BR';
+  // Atualiza lang do documento (WCAG 3.1.1)
+  if (lang === 'pt')      document.documentElement.lang = 'pt-BR';
   else if (lang === 'es') document.documentElement.lang = 'es';
-  else document.documentElement.lang = 'en';
+  else                    document.documentElement.lang = 'en';
 
   document.title = t('page.title');
 
-  // 3. Atualiza os botões de idioma e os textos do Leitor de Ecrã
+  // Botões de idioma
   document.querySelectorAll('.lang-btn').forEach(btn => {
     const btnLang = btn.dataset.lang.toLowerCase();
     const isActive = (btnLang === lang);
-    
     btn.classList.toggle('lang-btn--active', isActive);
     btn.setAttribute('aria-pressed', String(isActive));
-    
+
     const srSpan = btn.querySelector('.sr-only');
     if (srSpan) {
-      if (btnLang === 'pt') {
-        srSpan.textContent = isActive ? ' — Português (ativo)' : ' — Português';
-      } else if (btnLang === 'es') {
-        srSpan.textContent = isActive ? ' — Español (activo)' : ' — Español';
-      } else {
-        srSpan.textContent = isActive ? ' — English (active)' : ' — English';
-      }
+      if (btnLang === 'pt')      srSpan.textContent = isActive ? ' — Português (ativo)'  : ' — Português';
+      else if (btnLang === 'es') srSpan.textContent = isActive ? ' — Español (activo)'   : ' — Español';
+      else                       srSpan.textContent = isActive ? ' — English (active)'   : ' — English';
     }
   });
 
-  // 4. Traduz todos os textos dinâmicos na interface
+  // Textos estáticos via data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     el.textContent = t(el.dataset.i18n);
   });
@@ -420,14 +413,14 @@ function setLanguage(lang) {
     el.setAttribute('aria-label', t(el.dataset.i18nAria));
   });
 
-  // 5. Atualiza o botão de Modo Escuro
+  // Botão modo escuro
   const isDarkMode = document.documentElement.classList.contains('dark-mode');
   const label = document.getElementById('dark-mode-label');
   const themeBtn = document.getElementById('toggle-dark-mode');
-  if (label) label.textContent = t(isDarkMode ? 'theme.light' : 'theme.dark');
-  if (themeBtn) themeBtn.title = t(isDarkMode ? 'theme.light' : 'theme.dark');
+  if (label)    label.textContent = t(isDarkMode ? 'theme.light' : 'theme.dark');
+  if (themeBtn) themeBtn.title    = t(isDarkMode ? 'theme.light' : 'theme.dark');
 
-  // 6. Atualiza as listas geradas por JavaScript
+  // Re-renderiza listas dinâmicas
   const searchInput = document.getElementById('search-unit');
   if (searchInput) renderUnitList(searchInput.value);
   renderSpecialtyList();
@@ -435,12 +428,13 @@ function setLanguage(lang) {
   if (state.selectedDate) renderTimeSlots(state.selectedDate);
   if (state.currentStep === 5) renderReview();
 
-  // 7. CORREÇÃO DA VOZ: Anuncia a troca no idioma correto!
-  let announceMsg = 'Language changed to English';
-  if (lang === 'pt') announceMsg = 'Idioma alterado para Português';
-  if (lang === 'es') announceMsg = 'Idioma cambiado a Español';
-  
-  announce(announceMsg);
+  // Anuncia troca de idioma — mas NÃO na chamada inicial silenciosa
+  if (!isInit) {
+    let msg = 'Language changed to English';
+    if (lang === 'pt') msg = 'Idioma alterado para Português';
+    if (lang === 'es') msg = 'Idioma cambiado a Español';
+    announce(msg);
+  }
 }
 
 // ============================================================
@@ -448,12 +442,10 @@ function setLanguage(lang) {
 // ============================================================
 function announce(message) {
   const region = document.getElementById('live-region');
+  if (!region) return;
   region.textContent = '';
-  // Forçar re-render
-  setTimeout(() => { 
-    region.textContent = message; 
-    
-    // NOVO: Chama o motor de voz passando a mensagem
+  setTimeout(() => {
+    region.textContent = message;
     speakText(message);
   }, 50);
 }
@@ -462,43 +454,34 @@ function announce(message) {
 // NAVEGAÇÃO ENTRE ETAPAS
 // ============================================================
 function goToStep(targetStep) {
-  // Valida a etapa atual antes de avançar
   if (targetStep > state.currentStep) {
     if (!validateStep(state.currentStep)) return;
   }
 
-  // Esconde etapa atual
   const currentEl = document.getElementById(`step-${state.currentStep}`);
   if (currentEl) {
     currentEl.hidden = true;
     currentEl.classList.remove('step--active');
   }
 
-  // Atualiza estado
   state.currentStep = targetStep;
 
-  /// Mostra nova etapa
   const nextEl = document.getElementById(`step-${targetStep}`);
   if (nextEl) {
     nextEl.hidden = false;
     nextEl.classList.add('step--active');
-
-    // MUDANÇA PARA O 10: Foca diretamente no título da etapa
     const stepTitle = nextEl.querySelector('h1');
     if (stepTitle) {
-      stepTitle.setAttribute('tabindex', '-1'); // Permite que o h1 receba foco via JS
+      stepTitle.setAttribute('tabindex', '-1');
       stepTitle.focus();
     }
   }
 
-  // Ações especiais ao entrar em cada etapa
   if (targetStep === 3) renderCalendar();
   if (targetStep === 5) renderReview();
 
-  // Atualiza stepper visual
   updateStepper(targetStep);
 
-  // Anuncia etapa para leitores de tela
   const stepTitles = {
     1: t('step1.title'),
     2: t('step2.title'),
@@ -508,7 +491,6 @@ function goToStep(targetStep) {
   };
   announce(`Etapa ${targetStep} de 5: ${stepTitles[targetStep]}`);
 
-  // Scroll suave ao topo
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -527,7 +509,7 @@ function updateStepper(activeStep) {
 }
 
 // ============================================================
-// VALIDAÇÕES POR ETAPA
+// VALIDAÇÕES
 // ============================================================
 function validateStep(step) {
   switch (step) {
@@ -554,28 +536,19 @@ function hideError(errorId) {
 }
 
 function validateStep1() {
-  if (!state.selectedUnit) {
-    showError('step1-error');
-    return false;
-  }
+  if (!state.selectedUnit) { showError('step1-error'); return false; }
   hideError('step1-error');
   return true;
 }
 
 function validateStep2() {
-  if (!state.selectedSpecialty) {
-    showError('step2-error');
-    return false;
-  }
+  if (!state.selectedSpecialty) { showError('step2-error'); return false; }
   hideError('step2-error');
   return true;
 }
 
 function validateStep3() {
-  if (!state.selectedDate || !state.selectedTime) {
-    showError('step3-error');
-    return false;
-  }
+  if (!state.selectedDate || !state.selectedTime) { showError('step3-error'); return false; }
   hideError('step3-error');
   return true;
 }
@@ -583,71 +556,45 @@ function validateStep3() {
 function validateStep4() {
   let isValid = true;
 
-  // Nome
   const name = document.getElementById('patient-name');
   if (!name.value.trim()) {
-    setFieldError(name, 'name-error', t('error.name.required'));
-    isValid = false;
+    setFieldError(name, 'name-error', t('error.name.required')); isValid = false;
   } else if (name.value.trim().length < 3) {
-    setFieldError(name, 'name-error', t('error.name.short'));
-    isValid = false;
-  } else {
-    clearFieldError(name, 'name-error');
-  }
+    setFieldError(name, 'name-error', t('error.name.short')); isValid = false;
+  } else { clearFieldError(name, 'name-error'); }
 
-  // CPF
   const cpf = document.getElementById('patient-cpf');
   const cpfClean = cpf.value.replace(/\D/g, '');
   if (!cpfClean) {
-    setFieldError(cpf, 'cpf-error', t('error.cpf.required'));
-    isValid = false;
+    setFieldError(cpf, 'cpf-error', t('error.cpf.required')); isValid = false;
   } else if (!validateCPF(cpfClean)) {
-    setFieldError(cpf, 'cpf-error', t('error.cpf.invalid'));
-    isValid = false;
-  } else {
-    clearFieldError(cpf, 'cpf-error');
-  }
+    setFieldError(cpf, 'cpf-error', t('error.cpf.invalid')); isValid = false;
+  } else { clearFieldError(cpf, 'cpf-error'); }
 
-  // Data de nascimento
   const birth = document.getElementById('patient-birth');
   if (!birth.value) {
-    setFieldError(birth, 'birth-error', t('error.birth.required'));
-    isValid = false;
+    setFieldError(birth, 'birth-error', t('error.birth.required')); isValid = false;
   } else if (new Date(birth.value) > new Date()) {
-    setFieldError(birth, 'birth-error', t('error.birth.future'));
-    isValid = false;
-  } else {
-    clearFieldError(birth, 'birth-error');
-  }
+    setFieldError(birth, 'birth-error', t('error.birth.future')); isValid = false;
+  } else { clearFieldError(birth, 'birth-error'); }
 
-  // Telefone
   const phone = document.getElementById('patient-phone');
   const phoneClean = phone.value.replace(/\D/g, '');
   if (!phoneClean) {
-    setFieldError(phone, 'phone-error', t('error.phone.required'));
-    isValid = false;
+    setFieldError(phone, 'phone-error', t('error.phone.required')); isValid = false;
   } else if (phoneClean.length < 10) {
-    setFieldError(phone, 'phone-error', t('error.phone.invalid'));
-    isValid = false;
-  } else {
-    clearFieldError(phone, 'phone-error');
-  }
+    setFieldError(phone, 'phone-error', t('error.phone.invalid')); isValid = false;
+  } else { clearFieldError(phone, 'phone-error'); }
 
-  // E-mail (opcional, mas se preenchido deve ser válido)
   const email = document.getElementById('patient-email');
   if (email.value.trim() && !isValidEmail(email.value)) {
-    setFieldError(email, 'email-error', t('error.email.invalid'));
-    isValid = false;
-  } else {
-    clearFieldError(email, 'email-error');
-  }
+    setFieldError(email, 'email-error', t('error.email.invalid')); isValid = false;
+  } else { clearFieldError(email, 'email-error'); }
 
   if (!isValid) {
-    // Foca no primeiro campo com erro
     const firstError = document.querySelector('.text-input.is-invalid');
     if (firstError) firstError.focus();
   }
-
   return isValid;
 }
 
@@ -655,10 +602,7 @@ function setFieldError(input, errorId, message) {
   input.classList.add('is-invalid');
   input.setAttribute('aria-invalid', 'true');
   const errorEl = document.getElementById(errorId);
-  if (errorEl) {
-    errorEl.textContent = message;
-    errorEl.hidden = false;
-  }
+  if (errorEl) { errorEl.textContent = message; errorEl.hidden = false; }
 }
 
 function clearFieldError(input, errorId) {
@@ -673,6 +617,8 @@ function clearFieldError(input, errorId) {
 // ============================================================
 function renderUnitList(filter = '') {
   const list = document.getElementById('unit-list');
+  if (!list) return;
+
   const filtered = filter.length >= 2
     ? MOCK_UNITS.filter(u =>
         u.name.toLowerCase().includes(filter.toLowerCase()) ||
@@ -717,18 +663,19 @@ function selectUnit(id) {
   state.selectedUnit = MOCK_UNITS.find(u => u.id === id) || null;
   hideError('step1-error');
   renderUnitList(document.getElementById('search-unit').value);
-  announce(`${state.selectedUnit.name} ${t('unit.selected')}`);
+  if (state.selectedUnit) announce(`${state.selectedUnit.name} ${t('unit.selected')}`);
 }
 
 // ============================================================
 // RENDERIZAÇÃO — ETAPA 2: Especialidades
+// BUG CORRIGIDO: usa specialtyLabel() para suportar ES
 // ============================================================
 function renderSpecialtyList() {
   const list = document.getElementById('specialty-list');
   if (!list) return;
 
   list.innerHTML = MOCK_SPECIALTIES.map(spec => {
-    const label = state.lang === 'pt' ? spec.labelPt : spec.labelEn;
+    const label = specialtyLabel(spec);
     const isSelected = state.selectedSpecialty?.id === spec.id;
     const selectedBadge = t('specialty.selected');
     return `
@@ -752,8 +699,9 @@ function selectSpecialty(id) {
   state.selectedSpecialty = MOCK_SPECIALTIES.find(s => s.id === id) || null;
   hideError('step2-error');
   renderSpecialtyList();
-  const label = state.lang === 'pt' ? state.selectedSpecialty.labelPt : state.selectedSpecialty.labelEn;
-  announce(`${label} ${t('specialty.selected')}`);
+  if (state.selectedSpecialty) {
+    announce(`${specialtyLabel(state.selectedSpecialty)} ${t('specialty.selected')}`);
+  }
 }
 
 // ============================================================
@@ -764,44 +712,40 @@ function renderCalendar() {
   const monthLabel = document.getElementById('calendar-month-label');
   if (!grid || !monthLabel) return;
 
-  const months = t('months').split(',');
+  const months   = t('months').split(',');
   const weekdays = t('weekdays.short').split(',');
-  const year = state.calendarYear;
+  const year  = state.calendarYear;
   const month = state.calendarMonth;
 
   monthLabel.textContent = `${months[month]} ${year}`;
 
-  const firstDay = new Date(year, month, 1).getDay();
+  const firstDay    = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const today = new Date();
+  const today       = new Date();
 
-  // Cabeçalho dos dias da semana
   const headers = weekdays.map(d =>
     `<div class="calendar-day-header" role="columnheader" aria-label="${d}">${d}</div>`
   ).join('');
 
-  // Células vazias no início
   const blanks = Array.from({ length: firstDay }, () =>
     `<div role="gridcell" aria-hidden="true"></div>`
   ).join('');
 
   const dayCells = Array.from({ length: daysInMonth }, (_, i) => {
-    const day = i + 1;
+    const day  = i + 1;
     const date = new Date(year, month, day);
     const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const isUnavailable = UNAVAILABLE_DAYS.includes(day);
     const disabled = isPast || isUnavailable;
 
-    const dateStr = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const dateStr  = `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
     const isSelected = state.selectedDate === dateStr;
 
     const availableText = disabled ? t('day.unavailable.aria') : t('day.available.aria');
     const dot = !disabled ? `<span class="day-dot" aria-hidden="true"></span>` : '';
 
-    // Formato de data legível para aria-label
-    const dateForAria = state.lang === 'pt'
-      ? date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
-      : date.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' });
+    const locale = state.lang === 'pt' ? 'pt-BR' : state.lang === 'es' ? 'es-ES' : 'en-US';
+    const dateForAria = date.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' });
 
     return `
       <div role="gridcell">
@@ -825,7 +769,7 @@ function renderCalendar() {
 
 function changeMonth(delta) {
   state.calendarMonth += delta;
-  if (state.calendarMonth > 11) { state.calendarMonth = 0; state.calendarYear++; }
+  if (state.calendarMonth > 11) { state.calendarMonth = 0;  state.calendarYear++; }
   if (state.calendarMonth < 0)  { state.calendarMonth = 11; state.calendarYear--; }
   state.selectedDate = null;
   state.selectedTime = null;
@@ -846,27 +790,25 @@ function selectDate(dateStr) {
 }
 
 function renderTimeSlots(dateStr) {
-  const list = document.getElementById('time-list');
+  const list      = document.getElementById('time-list');
   const dateLabel = document.getElementById('selected-date-label');
   if (!list) return;
 
-  const date = new Date(dateStr + 'T12:00:00');
-  const formatted = state.lang === 'pt'
-    ? date.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })
-    : date.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' });
-
+  const locale = state.lang === 'pt' ? 'pt-BR' : state.lang === 'es' ? 'es-ES' : 'en-US';
+  const date   = new Date(dateStr + 'T12:00:00');
+  const formatted = date.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' });
   dateLabel.textContent = `${t('selected.date.label')} ${formatted}`;
 
-  // Mescla os dois arrays para gerar a grade de horários
   const allSlots = [
     ...MOCK_TIME_SLOTS.available.map(time => ({ time, available: true })),
     ...MOCK_TIME_SLOTS.unavailable.map(time => ({ time, available: false })),
   ].sort((a, b) => a.time.localeCompare(b.time));
 
   list.innerHTML = allSlots.map(slot => {
-    const isSelected = state.selectedTime === slot.time;
-    const statusText = slot.available ? t('time.available') : t('time.unavailable');
-    const ariaLabel = `${slot.time} — ${statusText}${isSelected ? ' — Selecionado' : ''}`;
+    const isSelected   = state.selectedTime === slot.time;
+    const statusText   = slot.available ? t('time.available') : t('time.unavailable');
+    const selectedText = isSelected ? ` — ${t('specialty.selected')}` : '';
+    const ariaLabel    = `${slot.time} — ${statusText}${selectedText}`;
     return `
       <li>
         <button
@@ -893,39 +835,33 @@ function selectTime(time) {
 
 // ============================================================
 // RENDERIZAÇÃO — ETAPA 5: Revisão
+// BUG CORRIGIDO: usa specialtyLabel() para ES
 // ============================================================
 function renderReview() {
   const reviewList = document.getElementById('review-list');
   if (!reviewList) return;
 
+  const locale = state.lang === 'pt' ? 'pt-BR' : state.lang === 'es' ? 'es-ES' : 'en-US';
+
   const date = state.selectedDate
-    ? (() => {
-        const d = new Date(state.selectedDate + 'T12:00:00');
-        return state.lang === 'pt'
-          ? d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
-          : d.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-      })()
+    ? new Date(state.selectedDate + 'T12:00:00')
+        .toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
     : '—';
 
-  const specialtyLabel = state.selectedSpecialty
-    ? (state.lang === 'pt' ? state.selectedSpecialty.labelPt : state.selectedSpecialty.labelEn)
-    : '—';
+  const specLabel = state.selectedSpecialty ? specialtyLabel(state.selectedSpecialty) : '—';
 
   const patientName  = document.getElementById('patient-name')?.value  || '—';
   const patientCPF   = document.getElementById('patient-cpf')?.value   || '—';
   const patientBirth = (() => {
     const v = document.getElementById('patient-birth')?.value;
     if (!v) return '—';
-    const d = new Date(v + 'T12:00:00');
-    return state.lang === 'pt'
-      ? d.toLocaleDateString('pt-BR')
-      : d.toLocaleDateString('en-US');
+    return new Date(v + 'T12:00:00').toLocaleDateString(locale);
   })();
   const patientPhone = document.getElementById('patient-phone')?.value || '—';
 
   const rows = [
     [t('review.unit'),      state.selectedUnit?.name || '—'],
-    [t('review.specialty'), specialtyLabel],
+    [t('review.specialty'), specLabel],
     [t('review.date'),      date],
     [t('review.time'),      state.selectedTime || '—'],
     [t('review.name'),      patientName],
@@ -941,92 +877,97 @@ function renderReview() {
 
 // ============================================================
 // CONFIRMAÇÃO DO AGENDAMENTO
+// BUG CORRIGIDO: receipt-summary copiado corretamente após renderReview()
 // ============================================================
 function confirmBooking() {
-  // Gera protocolo único
   const now = Date.now().toString(36).toUpperCase();
   state.protocolNumber = `AGS-${now}-${Math.floor(Math.random() * 9000 + 1000)}`;
 
-  // Mostra comprovante
-  document.getElementById('review-view').hidden = true;
+  // Garante que o review-list está atualizado antes de copiar
+  renderReview();
+
+  document.getElementById('review-view').hidden  = true;
   document.getElementById('receipt-view').hidden = false;
 
-  // Preenche protocolo
   document.getElementById('protocol-number').textContent = state.protocolNumber;
 
-  // Preenche resumo no comprovante
+  // BUG CORRIGIDO: copia innerHTML do review-list para receipt-summary
   const receiptSummary = document.getElementById('receipt-summary');
-  if (receiptSummary) {
-    document.getElementById('review-list').innerHTML; // já populado
-    receiptSummary.innerHTML = document.getElementById('review-list').innerHTML;
+  const reviewList     = document.getElementById('review-list');
+  if (receiptSummary && reviewList) {
+    receiptSummary.innerHTML = reviewList.innerHTML;
   }
 
-  // Traduz instruções
-  const instrItems = document.querySelectorAll('.instructions-list li');
-  instrItems.forEach((li, i) => {
+  // Traduz instruções no comprovante
+  document.querySelectorAll('.instructions-list li').forEach((li, i) => {
     li.textContent = t(`receipt.instructions.${i + 1}`);
   });
 
-  // Anuncia sucesso para leitores de tela (aria-live=assertive)
-  setTimeout(() => {
-    announce(t('receipt.confirmed.announce'));
-  }, 100);
-
+  setTimeout(() => announce(t('receipt.confirmed.announce')), 100);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function copyProtocol() {
   if (!state.protocolNumber) return;
-  navigator.clipboard.writeText(state.protocolNumber).then(() => {
+  const doAnnounce = () => {
     const btn = document.getElementById('copy-btn');
-    const originalText = btn.querySelector('[data-i18n="receipt.copy.btn"]');
-    if (originalText) originalText.textContent = t('receipt.copy.success');
+    const span = btn?.querySelector('[data-i18n="receipt.copy.btn"]');
+    if (span) span.textContent = t('receipt.copy.success');
     announce(t('receipt.copy.success'));
-    setTimeout(() => {
-      if (originalText) originalText.textContent = t('receipt.copy.btn');
-    }, 2500);
-  }).catch(() => {
-    // Fallback para navegadores sem suporte
-    const el = document.createElement('textarea');
-    el.value = state.protocolNumber;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    announce(t('receipt.copy.success'));
-  });
+    setTimeout(() => { if (span) span.textContent = t('receipt.copy.btn'); }, 2500);
+  };
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(state.protocolNumber).then(doAnnounce).catch(() => {
+      fallbackCopy();
+      doAnnounce();
+    });
+  } else {
+    fallbackCopy();
+    doAnnounce();
+  }
+}
+
+function fallbackCopy() {
+  const el = document.createElement('textarea');
+  el.value = state.protocolNumber;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
 }
 
 // ============================================================
 // REINICIAR FLUXO
+// BUG CORRIGIDO: removida a gambiarra de state.currentStep = 5
 // ============================================================
 function resetFlow() {
-  state.selectedUnit     = null;
+  state.selectedUnit      = null;
   state.selectedSpecialty = null;
-  state.selectedDate     = null;
-  state.selectedTime     = null;
-  state.patientData      = {};
-  state.protocolNumber   = null;
-  state.calendarMonth    = new Date().getMonth();
-  state.calendarYear     = new Date().getFullYear();
+  state.selectedDate      = null;
+  state.selectedTime      = null;
+  state.patientData       = {};
+  state.protocolNumber    = null;
+  state.calendarMonth     = new Date().getMonth();
+  state.calendarYear      = new Date().getFullYear();
 
-  // Limpa formulário
   const form = document.getElementById('patient-form');
   if (form) form.reset();
 
-  // Remove erros de validação
   document.querySelectorAll('.field-error').forEach(el => el.hidden = true);
   document.querySelectorAll('.text-input').forEach(el => {
     el.classList.remove('is-invalid');
     el.removeAttribute('aria-invalid');
   });
 
-  // Reseta comprovante
-  document.getElementById('review-view').hidden = false;
+  document.getElementById('review-view').hidden  = false;
   document.getElementById('receipt-view').hidden = true;
 
-  // Vai para etapa 1
-  state.currentStep = 5; // truque: goToStep vai de 5 para 1
+  // BUG CORRIGIDO: esconde etapa 5 manualmente antes de ir para 1
+  const step5 = document.getElementById('step-5');
+  if (step5) { step5.hidden = true; step5.classList.remove('step--active'); }
+
+  state.currentStep = 1;
   goToStep(1);
 }
 
@@ -1035,7 +976,7 @@ function resetFlow() {
 // ============================================================
 function validateCPF(cpf) {
   if (cpf.length !== 11) return false;
-  if (/^(\d)\1+$/.test(cpf)) return false; // todos dígitos iguais
+  if (/^(\d)\1+$/.test(cpf)) return false;
   let sum = 0;
   for (let i = 0; i < 9; i++) sum += parseInt(cpf[i]) * (10 - i);
   let remainder = (sum * 10) % 11;
@@ -1053,7 +994,7 @@ function isValidEmail(email) {
 }
 
 // ============================================================
-// MÁSCARAS DE ENTRADA (CPF e Telefone)
+// MÁSCARAS DE ENTRADA
 // ============================================================
 function maskCPF(value) {
   return value
@@ -1076,279 +1017,210 @@ function maskPhone(value) {
 }
 
 // ============================================================
-// MODO ESCURO (Dark Mode)
+// MODO ESCURO
 // ============================================================
 function initDarkMode() {
-  // Verifica preferência salva no localStorage
   const savedTheme = localStorage.getItem('agendaSaude-theme');
-  
-  // Se não há preferência salva, respeita a preferência do sistema
-  let isDarkMode = savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  applyDarkMode(isDarkMode);
+  const isDarkMode = savedTheme
+    ? savedTheme === 'dark'
+    : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyDarkMode(isDarkMode, true);
 }
 
 function toggleDarkMode() {
-  const isDarkMode = document.documentElement.classList.contains('dark-mode');
-  applyDarkMode(!isDarkMode);
+  applyDarkMode(!document.documentElement.classList.contains('dark-mode'));
 }
 
-function applyDarkMode(isDarkMode) {
-  const html = document.documentElement;
-  const btn = document.getElementById('toggle-dark-mode');
-  const label = document.getElementById('dark-mode-label');
-  
-  // 1. Aplica as classes visuais e o estado do botão (aria-pressed)
+// BUG CORRIGIDO: adicionado parâmetro silent para evitar anúncio na inicialização
+function applyDarkMode(isDarkMode, silent = false) {
+  const html     = document.documentElement;
+  const btn      = document.getElementById('toggle-dark-mode');
+  const label    = document.getElementById('dark-mode-label');
+  const themeKey = isDarkMode ? 'theme.light' : 'theme.dark';
+
   if (isDarkMode) {
     html.classList.add('dark-mode');
-    btn.setAttribute('aria-pressed', 'true');
+    btn?.setAttribute('aria-pressed', 'true');
     localStorage.setItem('agendaSaude-theme', 'dark');
   } else {
     html.classList.remove('dark-mode');
-    btn.setAttribute('aria-pressed', 'false');
+    btn?.setAttribute('aria-pressed', 'false');
     localStorage.setItem('agendaSaude-theme', 'light');
   }
 
-  // 2. Atualiza os textos do botão de forma inteligente (Respeitando PT, EN e ES)
-  const themeKey = isDarkMode ? 'theme.light' : 'theme.dark';
   if (label) label.textContent = t(themeKey);
-  if (btn) btn.title = t(themeKey);
+  if (btn)   btn.title         = t(themeKey);
 
-  // 3. CORREÇÃO DE ÁUDIO: Dispara o aviso falado no momento exato do clique!
-  let announceMsg = isDarkMode ? 'Dark mode enabled' : 'Light mode enabled';
-  
-  if (state.lang === 'pt') {
-    announceMsg = isDarkMode ? 'Modo escuro ativado' : 'Modo claro ativado';
-  } else if (state.lang === 'es') {
-    announceMsg = isDarkMode ? 'Modo oscuro activado' : 'Modo claro activado';
+  if (!silent) {
+    let msg = isDarkMode ? 'Dark mode enabled' : 'Light mode enabled';
+    if (state.lang === 'pt') msg = isDarkMode ? 'Modo escuro ativado'  : 'Modo claro ativado';
+    if (state.lang === 'es') msg = isDarkMode ? 'Modo oscuro activado' : 'Modo claro activado';
+    announce(msg);
   }
-
-  // Chama a função announce (que também ativa o seu Leitor de Voz Web Speech API)
-  announce(announceMsg);
-}
-function getCurrentLanguage() {
-  const btnPt = document.getElementById('lang-pt');
-  const btnEs = document.getElementById('lang-es');
-  
-  if (btnPt?.classList.contains('lang-btn--active')) return 'pt';
-  if (btnEs?.classList.contains('lang-btn--active')) return 'es';
-  return 'en';
 }
 
 // ============================================================
 // INICIALIZAÇÃO
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Inicializa modo escuro
   initDarkMode();
-  renderSpecialtyList();
-
-  // Inicializa stepper
   updateStepper(1);
 
-  // Busca em tempo real (Step 1)
+  // Busca em tempo real (Etapa 1)
   const searchInput = document.getElementById('search-unit');
   if (searchInput) {
-    searchInput.addEventListener('input', e => {
-      renderUnitList(e.target.value);
-    });
+    searchInput.addEventListener('input', e => renderUnitList(e.target.value));
   }
 
   // Máscara CPF
   const cpfInput = document.getElementById('patient-cpf');
   if (cpfInput) {
-    cpfInput.addEventListener('input', e => {
-      const pos = e.target.selectionStart;
-      e.target.value = maskCPF(e.target.value);
-    });
+    cpfInput.addEventListener('input', e => { e.target.value = maskCPF(e.target.value); });
   }
 
   // Máscara Telefone
   const phoneInput = document.getElementById('patient-phone');
   if (phoneInput) {
-    phoneInput.addEventListener('input', e => {
-      e.target.value = maskPhone(e.target.value);
-    });
+    phoneInput.addEventListener('input', e => { e.target.value = maskPhone(e.target.value); });
   }
 
-  // Limpa erro ao digitar nos campos
+  // Limpa erro ao digitar
   document.querySelectorAll('.text-input').forEach(input => {
     input.addEventListener('input', () => {
       if (input.classList.contains('is-invalid')) {
-        clearFieldError(input, input.getAttribute('aria-describedby')?.split(' ')[0]);
+        const describedBy = input.getAttribute('aria-describedby') || '';
+        clearFieldError(input, describedBy.split(' ')[0]);
       }
     });
   });
 
-  // Suporte a teclado no calendário (setas)
+  // Teclado no calendário (setas)
   document.addEventListener('keydown', e => {
     const focused = document.activeElement;
     if (!focused?.classList.contains('calendar-day')) return;
 
     const grid = document.getElementById('calendar-grid');
     const days = Array.from(grid.querySelectorAll('.calendar-day:not([tabindex="-1"])'));
-    const idx = days.indexOf(focused);
+    const idx  = days.indexOf(focused);
     if (idx === -1) return;
 
     const keyMap = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 };
     if (!(e.key in keyMap)) return;
-
     e.preventDefault();
     const next = days[idx + keyMap[e.key]];
     if (next) next.focus();
   });
 
-  // Tradução inicial
+  // Inicializa idioma PT (renderiza todas as listas)
   setLanguage('pt');
 });
+
 // ============================================================
-// MOTOR DE LEITURA DE TELA (WEB SPEECH API) - APRIMORADO
+// MOTOR DE LEITURA (WEB SPEECH API)
 // ============================================================
-let lastReadElement = null; // Variável para evitar que ele repita o mesmo texto sem parar
+let lastReadElement = null;
 
 function toggleAudio() {
   state.audioEnabled = !state.audioEnabled;
-  const btn = document.getElementById('toggle-audio');
+  const btn  = document.getElementById('toggle-audio');
   const icon = document.getElementById('audio-icon');
-  
-  btn.setAttribute('aria-pressed', state.audioEnabled);
+
+  btn?.setAttribute('aria-pressed', String(state.audioEnabled));
 
   if (state.audioEnabled) {
     icon.textContent = '🔊';
-    // Mensagem inicial ensinando a usar
-    const msg = state.lang === 'pt' ? 'Áudio ativado. Navegue pelo site com o mouse ou teclado para ouvir.' : 
-                state.lang === 'es' ? 'Audio activado. Navegue por el sitio para escuchar.' : 
-                'Audio enabled. Navigate the site to listen.';
+    const msg = state.lang === 'pt' ? 'Áudio ativado. Navegue pelo site com o mouse ou teclado para ouvir.'
+              : state.lang === 'es' ? 'Audio activado. Navegue por el sitio para escuchar.'
+              :                       'Audio enabled. Navigate the site to listen.';
     speakText(msg);
-    initAudioReader(); // Liga os sensores de leitura
+    initAudioReader();
   } else {
     icon.textContent = '🔇';
-    window.speechSynthesis.cancel(); // Cala a boca na hora
-    removeAudioReader(); // Desliga os sensores
+    window.speechSynthesis?.cancel();
+    removeAudioReader();
   }
 }
 
+// BUG CORRIGIDO: utterance.lang definido com base em state.lang no momento da fala
 function speakText(text) {
   if (!state.audioEnabled || !('speechSynthesis' in window)) return;
-  
-  window.speechSynthesis.cancel(); // Para a frase anterior para ler a nova imediatamente
-  
+  window.speechSynthesis.cancel();
+
   const utterance = new SpeechSynthesisUtterance(text);
-  
-  if (state.lang === 'pt') utterance.lang = 'pt-BR';
-  else if (state.lang === 'en') utterance.lang = 'en-US';
-  else if (state.lang === 'es') utterance.lang = 'es-ES';
-  
-  utterance.rate = 0.9; // Um pouco mais lento para clareza
+  utterance.lang  = state.lang === 'pt' ? 'pt-BR'
+                  : state.lang === 'es' ? 'es-ES'
+                  :                       'en-US';
+  utterance.rate  = 0.9;
   utterance.pitch = 1.0;
-  
   window.speechSynthesis.speak(utterance);
 }
 
-// O CÉREBRO DO LEITOR: Decide o que ler e quando ler
 function handleReadElement(e) {
   if (!state.audioEnabled) return;
 
-  // 1. PRIORIDADE: Primeiro tenta encontrar se o rato está dentro de um Botão, Link ou Input
   let readable = e.target.closest('button, a, input, label');
-
-  // 2. Se não for interativo, procura pelos textos normais na página
-  if (!readable) {
-    readable = e.target.closest('h1, h2, h3, p, li, span, legend, .unit-card, .calendar-day, .time-btn');
-  }
-
+  if (!readable) readable = e.target.closest('h1, h2, h3, p, li, span, legend, .unit-card, .calendar-day, .time-btn');
   if (!readable || readable === lastReadElement) return;
   lastReadElement = readable;
-
-  // Ignora o próprio botão de áudio para não fazer loop
   if (readable.id === 'toggle-audio') return;
 
   let textToRead = '';
 
-  // 3. Tratamento especial para formulários
   if (readable.tagName === 'INPUT') {
-     const labelText = readable.closest('.form-group')?.querySelector('.field-label')?.innerText || '';
-     const valueText = readable.value ? `Valor atual: ${readable.value}` : (readable.getAttribute('placeholder') || '');
-     
-     const introMsg = state.lang === 'pt' ? 'Campo de digitação:' : 
-                      state.lang === 'es' ? 'Campo de texto:' : 'Input field:';
-                      
-     textToRead = `${introMsg} ${labelText}. ${valueText}`;
-  } 
-  else {
-    // 4. ESTRATÉGIA BLINDADA (Ordem de prioridade para não ler emojis)
-    
-    // A) Procura por texto visível APENAS para leitores de tela (classe .sr-only)
-    const srOnlyElement = readable.querySelector('.sr-only');
-    
-    if (srOnlyElement && srOnlyElement.textContent.trim() !== '') {
-      textToRead = srOnlyElement.textContent;
-    } 
-    // B) Tenta o atributo title (tooltip, que nós atualizamos dinamicamente no Modo Escuro)
-    else if (readable.getAttribute('title')) {
+    const labelText  = readable.closest('.form-group')?.querySelector('.field-label')?.innerText || '';
+    const valueText  = readable.value || readable.getAttribute('placeholder') || '';
+    const introMsg   = state.lang === 'pt' ? 'Campo de digitação:'
+                     : state.lang === 'es' ? 'Campo de texto:'
+                     :                       'Input field:';
+    textToRead = `${introMsg} ${labelText}. ${valueText}`;
+  } else {
+    const srOnly = readable.querySelector('.sr-only');
+    if (srOnly?.textContent.trim()) {
+      textToRead = srOnly.textContent;
+    } else if (readable.getAttribute('title')) {
       textToRead = readable.getAttribute('title');
-    }
-    // C) Tenta o aria-label
-    else if (readable.getAttribute('aria-label')) {
+    } else if (readable.getAttribute('aria-label')) {
       textToRead = readable.getAttribute('aria-label');
-    } 
-    // D) Se nada disso existir, pega o texto puro da tela
-    else {
+    } else {
       const clone = readable.cloneNode(true);
-      const hiddenElements = clone.querySelectorAll('[aria-hidden="true"]');
-      hiddenElements.forEach(el => el.remove());
-      
+      clone.querySelectorAll('[aria-hidden="true"]').forEach(el => el.remove());
       textToRead = clone.innerText || clone.textContent;
     }
   }
 
-  // 5. FILTRO ABSOLUTO: Remove qualquer emoji que tenha sobrado usando Regex
-  // A tag \p{Extended_Pictographic} garante que ele apaga emojis (☀️, 🌙) mas preserva letras e números
   if (textToRead) {
     textToRead = textToRead.replace(/\p{Extended_Pictographic}/gu, '').trim();
   }
 
-  // Envia para a voz
-  if (textToRead && textToRead !== '') {
+  if (textToRead) {
     clearTimeout(window.readTimeout);
-    window.readTimeout = setTimeout(() => {
-      speakText(textToRead);
-    }, 150);
+    window.readTimeout = setTimeout(() => speakText(textToRead), 150);
   }
 }
 
-// Ouve a digitação em tempo real (Typing Echo)
 function handleTyping(e) {
   if (!state.audioEnabled) return;
-
   if (e.target.tagName === 'INPUT') {
-    // e.data captura exatamente a última letra digitada
-    const char = e.data;
-
-    if (char) {
-      speakText(char); // Fala a letra que acabou de ser digitada
-    } 
-    // Se o usuário apertar Backspace (apagar)
-    else if (e.inputType === 'deleteContentBackward') {
-      const apagadoMsg = state.lang === 'pt' ? 'Apagado' : 
-                         state.lang === 'es' ? 'Borrado' : 'Deleted';
-      speakText(apagadoMsg);
+    if (e.data) {
+      speakText(e.data);
+    } else if (e.inputType === 'deleteContentBackward') {
+      const msg = state.lang === 'pt' ? 'Apagado'
+                : state.lang === 'es' ? 'Borrado'
+                :                       'Deleted';
+      speakText(msg);
     }
   }
 }
 
-/// Liga os sensores
 function initAudioReader() {
-  document.addEventListener('focusin', handleReadElement);   // Teclado (Tab)
-  document.addEventListener('mouseover', handleReadElement); // Mouseover
-  document.addEventListener('input', handleTyping);          // NOVO: Sensor de digitação
+  document.addEventListener('focusin',   handleReadElement);
+  document.addEventListener('mouseover', handleReadElement);
+  document.addEventListener('input',     handleTyping);
 }
 
-// Desliga os sensores
 function removeAudioReader() {
-  document.removeEventListener('focusin', handleReadElement);
+  document.removeEventListener('focusin',   handleReadElement);
   document.removeEventListener('mouseover', handleReadElement);
-  document.removeEventListener('input', handleTyping);       // NOVO: Desliga o sensor de digitação
+  document.removeEventListener('input',     handleTyping);
   lastReadElement = null;
 }
